@@ -10,7 +10,7 @@ FlashPro Express projects containing pre-generated programming files are also av
 
 To download or clone the repository:
 
-	$ git clone https://github.com/RISCV-on-Microsemi-FPGA/Future-Avalanche-Board.git
+	
 
     $ Running from the zipped sources
     1. Download the zipped sources via the "Clone or download" button using "Download Zip" button
@@ -22,7 +22,7 @@ The Libero_Projects folder contains sample Mi-V Libero designs.
 
 ## Design Features
 The Libero designs include the following features:
-* A soft RISC-V [processor](https://github.com/RISCV-on-Microsemi-FPGA/CPUs)
+* A soft RISC-V processor
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
 * Target memory is RAM
@@ -51,4 +51,4 @@ the standalone version.
 SoftConsole is Microsemi’s free software development environment facilitating the rapid development of bare-metal and RTOS based C/C++ software for Microsemi CPU and SoC based FPGAs. It provides development and debug support for all Microsemi SoC FPGAs and 32-bit soft IP CPUs. SoftConsole can be downloaded [here](https://www.microsemi.com/product-directory/design-tools/4879-softconsole).  
 
 ### SoftConsole Projects
-A set of RISC-V example software projects are also available for these designs from the SoftConsole [page](https://github.com/RISCV-on-Microsemi-FPGA/SoftConsole).
+A set of RISC-V example software projects are also available for these designs from the SoftConsole page.
