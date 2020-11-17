@@ -12,7 +12,7 @@ To download or clone the repository:
 
 	
 
-    $ Downloading from the zipped sources on the [Future Avalanche Board github.io page](https://mi-v-soft-risc-v.github.io/Future-Avalanche-Board/)
+    $ Downloading from the zipped sources on the Future Avalanche Board github.io page
     1. Select the "Download ZIP File" from under the Microchip Logo and unzip
     2. Continue using the downloaded scripts as mentioned in the development boards READMEs
     
