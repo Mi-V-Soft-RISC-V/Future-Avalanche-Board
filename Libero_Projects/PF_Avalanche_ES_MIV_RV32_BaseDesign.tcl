@@ -73,7 +73,7 @@ proc download_cores_all_cfgs  { }\
 	download_core -vlnv {Actel:DirectCore:CoreUARTapb:5.7.100} -location {www.microchip-ip.com/repositories/DirectCore}
 	download_core -vlnv {Actel:DirectCore:CoreTimer:2.0.103} -location {www.microchip-ip.com/repositories/DirectCore}
 	download_core -vlnv {Actel:DirectCore:CORERESET_PF:2.3.100} -location {www.microchip-ip.com/repositories/DirectCore}
-	download_core -vlnv {Actel:DirectCore:COREJTAGDEBUG:3.1.100} -location {www.microchip-ip.com/repositories/DirectCore}
+	download_core -vlnv {Actel:DirectCore:COREJTAGDEBUG:4.0.100} -location {www.microchip-ip.com/repositories/DirectCore}
 	download_core -vlnv {Actel:DirectCore:CoreGPIO:3.2.102} -location {www.microchip-ip.com/repositories/DirectCore}
 	download_core -vlnv {Actel:DirectCore:COREAXITOAHBL:3.6.101} -location {www.microchip-ip.com/repositories/DirectCore}
 	download_core -vlnv {Actel:DirectCore:CoreAPB3:4.2.100} -location {www.microchip-ip.com/repositories/DirectCore}
@@ -149,14 +149,13 @@ if {"$config" == "CFG1"} then {
 	}
 }
 
-
+pre_configure_place_and_route
 
 if {"$design_flow_stage" == "SYNTHESIZE"} then {
 	puts "\n---------------------------------------------------------------------------------------------------------"
     puts "Begin Synthesis..."
 	puts "--------------------------------------------------------------------------------------------------------- \n"
 
-	pre_configure_place_and_route
     run_tool -name {SYNTHESIZE}
     save_project
 
@@ -171,7 +170,6 @@ if {"$design_flow_stage" == "SYNTHESIZE"} then {
     puts "Begin Place and Route..."
 	puts "--------------------------------------------------------------------------------------------------------- \n"
 
-	pre_configure_place_and_route
 	run_verify_timing
 	save_project
 
@@ -180,15 +178,12 @@ if {"$design_flow_stage" == "SYNTHESIZE"} then {
 	puts "--------------------------------------------------------------------------------------------------------- \n"
 
 
-
 } elseif {"$design_flow_stage" == "GENERATE_BITSTREAM"} then {
 
 	puts "\n---------------------------------------------------------------------------------------------------------"
     puts "Generating Bitstream..."
 	puts "--------------------------------------------------------------------------------------------------------- \n"
 
-
-	pre_configure_place_and_route
 	run_verify_timing
     run_tool -name {GENERATEPROGRAMMINGDATA}
     run_tool -name {GENERATEPROGRAMMINGFILE}
@@ -199,17 +194,13 @@ if {"$design_flow_stage" == "SYNTHESIZE"} then {
 	puts "--------------------------------------------------------------------------------------------------------- \n"
 
 
-
 } elseif {"$design_flow_stage" == "EXPORT_PROGRAMMING_FILE"} then {
 
 	puts "\n---------------------------------------------------------------------------------------------------------"
     puts "Exporting Programming Files..."
 	puts "--------------------------------------------------------------------------------------------------------- \n"
 
-
-	pre_configure_place_and_route
 	run_verify_timing
-	run_tool -name {GENERATEPROGRAMMINGDATA}
 	run_tool -name {GENERATEPROGRAMMINGFILE}
 
 	if {"$config" == "CFG1"} then {
