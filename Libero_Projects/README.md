@@ -1,31 +1,31 @@
 ## Future Avalanche Board Mi-V Sample FPGA Designs
-This folder contains Tcl scripts that build Libero SoC v12.4 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All cores boot from memory at 0x8000_0000.
+This folder contains Tcl scripts that build Libero SoC v2021.2 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All cores boot from memory at 0x8000_0000.
 
 
-#### PF_Avalanche_ES_MiV_RV32IMA_BaseDesign
+#### PF_Avalanche_ES_MIV_RV32IMA_BaseDesign
 
 | Config  | Description |
 | :------:|:------------|
-| CFG1    |This design uses the MiV_RV32IMA_L1_AHB core with an **AHB** interface for memory and peripherals|
-| CFG2    |This design uses the MiV_RV32IMA_L1_AXI core with an **AXI3** interface for memory and peripherals|
+| CFG1    |This design uses the MIV_RV32IMA_L1_AHB core with an **AHB** interface for memory and peripherals|
+| CFG2    |This design uses the MIV_RV32IMA_L1_AXI core with an **AXI3** interface for memory and peripherals|
 
 
-#### PF_Avalanche_ES_MiV_RV32IMAF_BaseDesign
+#### PF_Avalanche_ES_MIV_RV32IMAF_BaseDesign
 
 | Config  |Description |
 | :------:|:-----------|
-| CFG1    |  This design uses the MiV_RV32IMAF_L1_AHB core with an **AHB** interface for memory and peripherals|
+| CFG1    |  This design uses the MIV_RV32IMAF_L1_AHB core with an **AHB** interface for memory and peripherals|
 
 
 
-#### PF_Avalanche_ES_MiV_RV32IMC_BaseDesign
+#### PF_Avalanche_ES_MIV_RV32_BaseDesign
 
 
 | Config  | Description|
 | :------:|:----------------------------------------|
-| CFG1    | This design uses the MiV_RV32IMC core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| CFG2    | This design uses the MiV_RV32IMC core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| CFG3    | This design uses the MiV_RV32IMC core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG1    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
 
 
 
@@ -77,8 +77,8 @@ The Libero designs include the following features:
 * A soft RISC-V [processor](https://github.com/RISCV-on-Microsemi-FPGA/CPUs)
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
-* Target memory is RAM
-* User peripherals (GPIO, Timers, UART)
+* Target memory is SRAM (32kB)
+* User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
 
 The peripherals in this design are located at the following addresses.
 
@@ -89,4 +89,4 @@ The peripherals in this design are located at the following addresses.
 | CoreTimer_0   | 0x7000_3000   |
 | CoreTimer_1   | 0x7000_4000   |
 | CoreGPIO_OUT  | 0x7000_5000   |
-| RAM| 0x8000_0000|
+| SRAM| 0x8000_0000|
