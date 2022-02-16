@@ -1,6 +1,7 @@
-#PolarFire Avalanche Board = MPF300T_ES-FCG484I
+#Hardware     : PolarFire Avalanche Board (rev2 or rev3)
+#MIV Cores    : MIV_RV32IMA_L1_AHB
+#
 #Libero's TCL top level script
-# Core: MIV_RV32IMA_L1_AHB
 #
 #This Tcl file sources other Tcl files to build the design(on which recursive export is run) in a bottom-up fashion
 
@@ -50,15 +51,12 @@ sd_instantiate_component -sd_name ${sd_name} -component_name {CoreAHBL_0} -insta
 sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {CoreAHBL_0:REMAP_M0} -value {GND}
 
 
-
 # Add COREAHBTOAPB3_0 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {COREAHBTOAPB3_0} -instance_name {COREAHBTOAPB3_0}
 
 
-
 # Add CoreAPB3_0 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {CoreAPB3_0} -instance_name {CoreAPB3_0}
-
 
 
 # Add CoreGPIO_IN instance
@@ -67,7 +65,6 @@ sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreGPIO_IN:INT}
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreGPIO_IN:GPIO_OUT}
 sd_create_pin_slices -sd_name ${sd_name} -pin_name {CoreGPIO_IN:GPIO_IN} -pin_slices {"[0:0]"} 
 sd_create_pin_slices -sd_name ${sd_name} -pin_name {CoreGPIO_IN:GPIO_IN} -pin_slices {"[1:1]"} 
-
 
 
 # Add CoreGPIO_OUT instance
@@ -80,10 +77,8 @@ sd_create_pin_slices -sd_name ${sd_name} -pin_name {CoreGPIO_OUT:GPIO_OUT} -pin_
 sd_create_pin_slices -sd_name ${sd_name} -pin_name {CoreGPIO_OUT:GPIO_OUT} -pin_slices {"[3:3]"} 
 
 
-
 # Add CoreJTAGDebug_1 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {CoreJTAGDebug_1} -instance_name {CoreJTAGDebug_1}
-
 
 
 # Add CoreRESET_PF_0 instance
@@ -96,15 +91,12 @@ sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {CoreRESET_PF_0:FPGA_
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreRESET_PF_0:PLL_POWERDOWN_B}
 
 
-
 # Add CoreTimer_0 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {CoreTimer_0} -instance_name {CoreTimer_0}
 
 
-
 # Add CoreTimer_1 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {CoreTimer_1} -instance_name {CoreTimer_1}
-
 
 
 # Add CoreUARTapb_0 instance
@@ -114,7 +106,6 @@ sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreUARTapb_0:RXRDY}
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreUARTapb_0:PARITY_ERR}
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreUARTapb_0:OVERFLOW}
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {CoreUARTapb_0:FRAMING_ERR}
-
 
 
 # Add MIV_RV32IMA_L1_AHB_0 instance
@@ -129,10 +120,8 @@ sd_mark_pins_unused -sd_name ${sd_name} -pin_names {MIV_RV32IMA_L1_AHB_0:EXT_RES
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {MIV_RV32IMA_L1_AHB_0:DRV_TDO}
 
 
-
 # Add PF_CCC_0 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {PF_CCC_0} -instance_name {PF_CCC_0}
-
 
 
 # Add PF_INIT_MONITOR_0 instance
@@ -151,15 +140,12 @@ sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_INIT_MONITOR_0:SRAM_INIT_
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_INIT_MONITOR_0:AUTOCALIB_DONE}
 
 
-
 # Add PF_OSC_0 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {PF_OSC_0} -instance_name {PF_OSC_0}
 
 
-
 # Add PF_SRAM_0 instance
 sd_instantiate_component -sd_name ${sd_name} -component_name {PF_SRAM_0} -instance_name {PF_SRAM_0}
-
 
 
 # Add scalar net connections
@@ -206,7 +192,9 @@ sd_connect_pins -sd_name ${sd_name} -pin_names {"MIV_RV32IMA_L1_AHB_0:AHB_MST_MM
 
 # Re-enable auto promotion of pins of type 'pad'
 auto_promote_pad_pins -promote_all 1
-# Save the smartDesign
+# Re-arrange SmartDesign layout
+sd_reset_layout -sd_name ${sd_name}
+# Save the SmartDesign
 save_smartdesign -sd_name ${sd_name}
-# Generate SmartDesign BaseDesign
+# Generate the SmartDesign
 generate_component -component_name ${sd_name}
