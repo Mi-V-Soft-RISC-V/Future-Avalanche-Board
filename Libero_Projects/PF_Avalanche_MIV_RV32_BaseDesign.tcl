@@ -142,6 +142,7 @@ if {"$config" == "CFG1"} then {
 		new_project -location $project_dir_DGC2 -name $Libero_project_name_DGC2 -project_description {} -block_mode 0 -standalone_peripheral_initialization 0 -instantiate_in_smartdesign 1 -ondemand_build_dh 1 -hdl {VERILOG} -family {PolarFire} -die {MPF300TS} -package {FCG484} -speed {STD} -die_voltage {1.0} -part_range {IND} -adv_options {IO_DEFT_STD:LVCMOS 1.8V} -adv_options {RESTRICTPROBEPINS:1} -adv_options {RESTRICTSPIPINS:0} -adv_options {SYSTEM_CONTROLLER_SUSPEND_MODE:0} -adv_options {TEMPR:IND} -adv_options {VCCI_1.2_VOLTR:IND} -adv_options {VCCI_1.5_VOLTR:IND} -adv_options {VCCI_1.8_VOLTR:IND} -adv_options {VCCI_2.5_VOLTR:IND} -adv_options {VCCI_3.3_VOLTR:IND} -adv_options {VOLTR:IND}
 		file copy ./import/components/IMC_DGC2/hex/miv-rv32i-systick-blinky.hex $project_dir_DGC2    
 		download_required_direct_cores
+		file copy ./import/components/IMC_DGC2/bootloader_elf  ./MIV_DGC2_BD
 		source ./import/components/IMC_DGC2/import_component_and_constraints_pf_avalanche_rv32imc_dgc2.tcl
 		save_project
         base_design_built
