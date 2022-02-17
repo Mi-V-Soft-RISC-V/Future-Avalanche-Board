@@ -15,7 +15,7 @@ create_and_configure_core -core_vlnv {Actel:SystemBuilder:PF_SRAM_AHBL_AXI:*} -c
 "CASCADE:1" \
 "ECC_OPTIONS:0" \
 "FABRIC_INTERFACE_TYPE:0" \
-"IMPORT_FILE:miv-ess-blinky-tcm.hex" \
+"IMPORT_FILE:miv-rv32i-systick-blinky.hex" \
 "INIT_RAM:T" \
 "LPM_HINT:0" \
 "PIPELINE_OPTIONS:1" \
