@@ -26,6 +26,8 @@ This folder contains Tcl scripts that build Libero SoC v2021.3 design projects f
 | CFG1    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
 | CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
 | CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| DGC2    | This design uses the MIV_RV32 core configured as follows:  <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master
+|         | The design also features the MIV_ESS companion core configured as follows: ... please refer to the design guide for more information
 
 
 
@@ -55,6 +57,14 @@ In this example, the arguments "CFG1 SYNTHESIZE" are entered to take the project
 
 Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
 
+#### Running a Bootloader.elf program for DGC2
+The DGC2 design uses the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file consists of a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. Please refer to the design guide for detail
+    1. Open latest version of SoftConsole (v2021.1 and above are supported)
+    2. Select 'configure....'
+    3. ...
+    4. ...
+    5. ...
+    
 ## <a name="Script arguments"></a> Script Arguments
 In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. The complete set of script arguments are documented here.
 
@@ -95,13 +105,28 @@ The peripherals in this design are located at the following addresses.
 | SRAM| 0x8000_0000|
 
 
-### Peripherals map for DGC
+### Peripherals map for MIV_ESS DGC2 design
 
 | Peripheral    | Address   |
 | ------------- |:-------------:|
+| PLIC          | 0x7000_0000   |
 | CoreUARTapb   | 0x7100_0000   |
-| CoreGPIO_IN   | 0x7200_0000   |
+| Timer         | 0x7200_0000   |
 | CoreTimer_0   | 0x7300_0000   |
 | CoreTimer_1   | 0x7400_0000   |
 | CoreGPIO_OUT  | 0x7500_0000   |
 | SRAM| 0x8000_0000|
+    
+    
+### Memory Sources
+    
+| Memory Source    | Address                   | Size   |
+| TCM              | 0x4000_0000 - 0x4000_7FFF | 32kB   | 
+| LSRAM            | 0x8000_0000 - 0x8000_7FFF | 32kB   |
+    
+    
+### Or...
+    
+  CFG| Memory Source    | Address                   | Size   | Bootable |
+DGC2 | TCM              | 0x4000_0000 - 0x4000_7FFF | 32kB   | Yes      |
+DGC2 | LSRAM            | 0x8000_0000 - 0x8000_7FFF | 32kB   | Yes      |
