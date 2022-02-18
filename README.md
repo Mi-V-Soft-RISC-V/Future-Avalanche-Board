@@ -7,6 +7,7 @@ This repository contains Libero projects for the following soft core RISC-V proc
 * MIV_RV32IMAF_L1_AHB *
 
 \*Legacy cores. MIV_RV32 recommended for new designs
+\*MIV_RV32 configurations also feature the MIV_ESS companion core
 
 FlashPro Express projects containing pre-generated programming files are also available for each of the designs.
 
@@ -28,7 +29,8 @@ The Libero designs include the following features:
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
+* MIV_ESS Design Guide Configurations
+* User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
 
 ## Target Hardware
 Details of the Future Avalanche Board and it's features can be found:
@@ -48,5 +50,11 @@ The following design tools are required.
 available as a standalone application. Please note, that if Libero SoC is already on your system, you do not need
 the standalone version.
 
+# Software
+
 ## SoftConsole
 [SoftConsole](https://www.microsemi.com/product-directory/design-tools/4879-softconsole) is Microchip’s free software development environment facilitating the rapid development of bare-metal and RTOS based C/C++ software for Microchip CPU and SoC based FPGAs. It provides development and debug support for all Microchip SoC FPGAs and 32-bit soft IP CPUs. SoftConsole can be downloaded.
+
+## Firmware &/or Software (DGC only?) | Mi-V Soft processor Bare Metal Examples
+[Firmware](https://bitbucket.microchip.com/projects/FPGA_BU_MIV_SOFT_CPU_ES/repos/miv-rv32-bare-metal-examples/browse?at=refs%2Fheads%2Fmain-2022.02)
+This repository provides bare metal embedded software example projects built with Microchip's SoftConsole IDE.
