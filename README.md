@@ -7,6 +7,7 @@ This repository contains Libero projects for the following soft core RISC-V proc
 * MIV_RV32IMAF_L1_AHB *
 
 \*Legacy cores. MIV_RV32 recommended for new designs
+
 \*MIV_RV32 configurations also feature the MIV_ESS companion core
 
 FlashPro Express projects containing pre-generated programming files are also available for each of the designs.
