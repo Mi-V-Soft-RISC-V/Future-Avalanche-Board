@@ -1,8 +1,8 @@
 ## Future Avalanche Board Mi-V Sample FPGA Designs
-This folder contains Tcl scripts that build Libero SoC v2021.3 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All cores boot from memory at 0x8000_0000.
+This folder contains Tcl scripts that build Libero SoC v2021.3 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. ~~All cores boot from memory at 0x8000_0000.~~
 
 
-#### PF_Avalanche_ES_MIV_RV32IMA_BaseDesign
+#### PF_Avalanche_MIV_RV32IMA_BaseDesign (or ES equivalent)
 
 | Config  | Description |
 | :------:|:------------|
@@ -10,7 +10,7 @@ This folder contains Tcl scripts that build Libero SoC v2021.3 design projects f
 | CFG2    |This design uses the MIV_RV32IMA_L1_AXI core with an **AXI3** interface for memory and peripherals|
 
 
-#### PF_Avalanche_ES_MIV_RV32IMAF_BaseDesign
+#### PF_Avalanche_MIV_RV32IMAF_BaseDesign (or ES equivalent)
 
 | Config  |Description |
 | :------:|:-----------|
@@ -18,7 +18,7 @@ This folder contains Tcl scripts that build Libero SoC v2021.3 design projects f
 
 
 
-#### PF_Avalanche_ES_MIV_RV32_BaseDesign
+#### PF_Avalanche_MIV_RV32_BaseDesign (or ES equivalent)
 
 
 | Config  | Description|
@@ -62,6 +62,7 @@ In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. T
 | Argument                  |  Description   |
 | ------------------------- |:---------------|
 | CFG1..CFGn                | Generate a sample design for the selected configuration  |
+| DGC2                      | Generate a design guide sample design for the selected configuration  |
 
 
 #### Second argument:
@@ -77,10 +78,12 @@ The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
-* Target memory is SRAM (32kB)
+* Target memory is SRAM/TCM (32kB)
 * User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
 
 The peripherals in this design are located at the following addresses.
+
+**Note: For Design Guide Configurations (DGC) refer to the next table
 
 | Peripheral    | Address   |
 | ------------- |:-------------:|
@@ -89,4 +92,16 @@ The peripherals in this design are located at the following addresses.
 | CoreTimer_0   | 0x7000_3000   |
 | CoreTimer_1   | 0x7000_4000   |
 | CoreGPIO_OUT  | 0x7000_5000   |
+| SRAM| 0x8000_0000|
+
+
+### Peripherals map for DGC
+
+| Peripheral    | Address   |
+| ------------- |:-------------:|
+| CoreUARTapb   | 0x7100_0000   |
+| CoreGPIO_IN   | 0x7200_0000   |
+| CoreTimer_0   | 0x7300_0000   |
+| CoreTimer_1   | 0x7400_0000   |
+| CoreGPIO_OUT  | 0x7500_0000   |
 | SRAM| 0x8000_0000|
