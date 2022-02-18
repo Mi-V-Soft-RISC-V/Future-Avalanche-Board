@@ -9,14 +9,40 @@ Information on the provided Libero SoC v2021.3 DGC2 project is listed here...
 
 **Note:** DGC2 is only available for the rev 3 // production silicon device script
 
-#### Instructions on executing the script in Libero are listed in the main readme <link>
-* It might be worth to add them in here as well but, that would be replicating info that is already there
-* The main readme might benefit from having DGC2 listed in with the arguments, otherwise it can be listed here
+## <a name="quick"></a> Instructions
+
+#### Running Libero SoC in GUI mode, with Script Arguments
+a. For running the design in Libero SoC in GUI mode, follow steps 1 to 4 from main readme: <link to the main readme>
+b. In the arguments text box, enter "DGC2 SYNTHESIZE"
+c. Follow step 6 and step 7
+
+In this example, the arguments "DGC2 SYNTHESIZE" are entered to take the project through to Synthesis.
+
+~~For this target hardware, only a single Design Guide Configuration is used. Therefore, if the arguments "DGC2 SYNTHESIZE" are entered to take the project through to Synthesis.~~
+
+~~#### Instructions on executing the script in Libero are listed in the main readme <link>
+~~* ~~It might be worth to add them in here as well but, that would be replicating info that is already there
+~~* ~~The main readme might benefit from having DGC2 listed in with the arguments, otherwise it can be listed here
+
+~~* For running the design in Libero SoC in GUI mode, follow these steps:  <link to the main readme>~~
+
+## <a name="Script arguments"></a> Script Arguments
+In the examples above the arguments "DGC2" and "DGC2 SYNTHESIZE" were entered. The complete set of script arguments are documented here.
 
 #### First argument:
 | Argument                  |  Description   |
 | ------------------------- |:---------------|
 | DGC2                      | Generate a MIV_ESS example design from the MIV_ESS Design Guide  |
+
+#### Second argument:
+| Argument                  |  Description   |
+| ------------------------- |:---------------|
+| SYNTHESIZE                | Run synthesis on the design  |
+| PLACE_AND_ROUTE           | Run place and route on the design  |
+| GENERATE_BITSTREAM        | Generate the bitstream for the design|
+| EXPORT_PROGRAMMING_FILE   | Export the programming file (.job) |
+
+
 
 #### Running a Bootloader.elf program for DGC2
 The DGC2 design uses the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file consists of a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. Please refer to the design guide for more detail on how to run this... Link up  to the baremetal bootloader repository <link>...
