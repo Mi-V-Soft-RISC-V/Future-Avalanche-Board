@@ -28,7 +28,7 @@ This folder contains Tcl scripts that build Libero SoC v2021.3 design projects f
 | CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
 | CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
 | DGC2    | This design uses the MIV_RV32 core configured as follows:  <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master
-|         | The design also features the MIV_ESS companion core configured as follows: ... please refer to the design guide for more information
+|         | The design also features the MIV_ESS companion core configured as follows: ... please refer to the design guide for more information <add the link to the design guide here>
 
 
 
@@ -59,7 +59,7 @@ In this example, the arguments "CFG1 SYNTHESIZE" are entered to take the project
 Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
 
 #### Running a Bootloader.elf program for DGC2
-The DGC2 design uses the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file consists of a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. Please refer to the design guide for detail <link>... Link up  to the baremetal bootloader repository <link>...
+The DGC2 design uses the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file consists of a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. Please refer to the design guide for more detail on how to run this... Link up  to the baremetal bootloader repository <link>...
     
     1. Open latest version of SoftConsole (v2021.1 and above are supported)
     2. Select 'configure....'
@@ -74,8 +74,8 @@ In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. T
 #### First argument:
 | Argument                  |  Description   |
 | ------------------------- |:---------------|
-| CFG1..CFGn                | Generate a sample design for the selected configuration  |
-| DGC2                      | Generate a design guide sample design for the selected configuration  |
+| CFG1..CFGn                | Generate a sample design for the selected configuration                           |
+| DGC2                      | Generate a MIV_ESS example design from the MIV_ESS Design Guide <link the DG UG>  |
 
 
 #### Second argument:
