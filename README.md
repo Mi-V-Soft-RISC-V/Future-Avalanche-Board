@@ -8,8 +8,6 @@ This repository contains Libero projects for the following soft core RISC-V proc
 
 \*Legacy cores. MIV_RV32 recommended for new designs
 
-\*~~MIV_RV32 configurations also feature the MIV_ESS companion core~~
-
 FlashPro Express projects containing pre-generated programming files are also available for each of the designs.
 
 To download or clone the repository:
@@ -22,7 +20,7 @@ To download or clone the repository:
 
 
 # Libero Projects
-The Libero_Projects folder contains [sample Mi-V Libero designs](link to Libero_Projects) for Libero SoC v2021.3. Libero projects for older Libero releases can be downloaded from their [tags](https://github.com/Mi-V-Soft-RISC-V/Future-Avalanche-Board/releases) in this repository.
+The Libero_Projects folder contains [sample Mi-V Libero designs](https://github.com/seb-slowiko/Future-Avalanche-Board-1/tree/v2021-3/Libero_Projects) for Libero SoC v2021.3. Libero projects for older Libero releases can be downloaded from their [tags](https://github.com/Mi-V-Soft-RISC-V/Future-Avalanche-Board/releases) in this repository.
 
 ## Design Features
 The Libero designs include the following features:
@@ -35,6 +33,7 @@ The Libero designs include the following features:
 ## Target Hardware
 Details of the Future Avalanche Board and it's features can be found:
 * [AVMPF300TS-03](https://www.microsemi.com/existing-parts/parts/139680) (MPF300TS_ES)
+* Link to PS ?
 
 # FlashPro Express
 The FlashPro_Express_Projects folder contains the pre-generated programming files, which can be downloaded directly to the target board using FlashPro Express.
@@ -55,6 +54,6 @@ the standalone version.
 ## SoftConsole
 [SoftConsole](https://www.microsemi.com/product-directory/design-tools/4879-softconsole) is Microchip’s free software development environment facilitating the rapid development of bare-metal and RTOS based C/C++ software for Microchip CPU and SoC based FPGAs. It provides development and debug support for all Microchip SoC FPGAs and 32-bit soft IP CPUs. SoftConsole can be downloaded.
 
-## Firmware &/or Software (DGC only?) | Mi-V Soft processor Bare Metal Examples
-[Firmware](https://bitbucket.microchip.com/projects/FPGA_BU_MIV_SOFT_CPU_ES/repos/miv-rv32-bare-metal-examples/browse?at=refs%2Fheads%2Fmain-2022.02)
-This repository provides bare metal embedded software example projects built with Microchip's SoftConsole IDE.
+## Mi-V Soft processor Bare Metal Examples
+A [Firmware](https://bitbucket.microchip.com/projects/FPGA_BU_MIV_SOFT_CPU_ES/repos/miv-rv32-bare-metal-examples/browse?at=refs%2Fheads%2Fmain-2022.02)
+repository that provides bare metal embedded software example projects built with Microchip's SoftConsole IDE.
