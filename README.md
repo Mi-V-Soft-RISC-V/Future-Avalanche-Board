@@ -8,7 +8,7 @@ This repository contains Libero projects for the following soft core RISC-V proc
 
 \*Legacy cores. MIV_RV32 recommended for new designs
 
-\*MIV_RV32 configurations also feature the MIV_ESS companion core
+\*~~MIV_RV32 configurations also feature the MIV_ESS companion core~~
 
 FlashPro Express projects containing pre-generated programming files are also available for each of the designs.
 
@@ -30,8 +30,7 @@ The Libero designs include the following features:
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* MIV_ESS Design Guide Configurations
-* User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
+* User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
 
 ## Target Hardware
 Details of the Future Avalanche Board and it's features can be found:
