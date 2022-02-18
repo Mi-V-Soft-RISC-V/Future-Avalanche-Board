@@ -58,12 +58,14 @@ In this example, the arguments "CFG1 SYNTHESIZE" are entered to take the project
 Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
 
 #### Running a Bootloader.elf program for DGC2
-The DGC2 design uses the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file consists of a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. Please refer to the design guide for detail
+The DGC2 design uses the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file consists of a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. Please refer to the design guide for detail <link>... Link up  to the baremetal bootloader repository <link>...
+    
     1. Open latest version of SoftConsole (v2021.1 and above are supported)
     2. Select 'configure....'
     3. ...
     4. ...
     5. ...
+    
     
 ## <a name="Script arguments"></a> Script Arguments
 In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. The complete set of script arguments are documented here.
