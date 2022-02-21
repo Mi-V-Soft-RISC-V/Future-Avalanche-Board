@@ -115,6 +115,6 @@ the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloa
 | Memory Source                    | Address Start | Address End | Size   |
 | :------------------------------: |:-------------:|:-----------:|:------:|
 | TCM                              | 0x4000_0000   | 0x4000_7FFF | 32kB   | 
-| LSRAM (SRC_MEM)                  | 0x8000_0000   | 0x8000_7FFF | 32kB   |
+| LSRAM                            | 0x8000_0000   | 0x8000_7FFF | 32kB   |
 
 
