@@ -92,41 +92,29 @@ the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloa
 
 ##### Peripherals - MIV_ESS
 
-| Peripheral    | Address   |
-| ------------- |:-------------:|
-| PLIC          | 0x7000_0000   |
-| CoreUARTapb   | 0x7100_0000   |
-| Timer         | 0x7200_0000   |
-| CoreTimer_0 / MIV_ESS_APBSLOT3   | 0x7300_0000   |
-| CoreTimer_1 / MIV_ESS_APBSLOT4   | 0x7400_0000   |
-| CoreGPIO_OUT  | 0x7500_0000   |
-| SPI           | 0x7600_0000   |
-| uDMA          | 0x7800_0000   |
-| WDOG          | 0x7900_0000   |
-| I2C           | 0x7A00_0000   |
-| MIV_ESS_APBSLOTB_BASE    | 0x7B00_0000   |
-| MIV_ESS_APBSLOTc_BASE    | 0x7C00_0000   |
-| MIV_ESS_APBSLOTD_BASE    | 0x7D00_0000   |
-| MIV_ESS_APBSLOTE_BASE    | 0x7E00_0000   |
-| MIV_ESS_APBSLOTF_BASE    | 0x7F00_0000   |
-| SRAM| 0x8000_0000|
-
+| Peripheral                       | Address Start | Address End    |
+| :------------------------------: |:-------------:|:--------------:|
+| PLIC                             | 0x7000_0000   | 0x70FF_FFFF    |
+| CoreUARTapb                      | 0x7100_0000   | 0x71FF_FFFF    |
+| Timer                            | 0x7200_0000   | 0x72FF_FFFF    |
+| CoreTimer_0 / MIV_ESS_APBSLOT3   | 0x7300_0000   | 0x73FF_FFFF    |
+| CoreTimer_1 / MIV_ESS_APBSLOT4   | 0x7400_0000   | 0x74FF_FFFF    |
+| CoreGPIO_OUT                     | 0x7500_0000   | 0x75FF_FFFF    |
+| SPI                              | 0x7600_0000   | 0x76FF_FFFF    |
+| uDMA                             | 0x7800_0000   | 0x78FF_FFFF    |
+| WDOG                             | 0x7900_0000   | 0x79FF_FFFF    |
+| I2C                              | 0x7A00_0000   | 0x7AFF_FFFF    |
+| MIV_ESS_APBSLOTB_BASE            | 0x7B00_0000   | 0x7BFF_FFFF    |
+| MIV_ESS_APBSLOTc_BASE            | 0x7C00_0000   | 0x7CFF_FFFF    |
+| MIV_ESS_APBSLOTD_BASE            | 0x7D00_0000   | 0x7DFF_FFFF    |
+| MIV_ESS_APBSLOTE_BASE            | 0x7E00_0000   | 0x7EFF_FFFF    |
+| MIV_ESS_APBSLOTF_BASE            | 0x7F00_0000   | 0x7FFF_FFFF    |
     
 ##### Memory Sources
     
-| Memory Source    | Address Range             | Size   |
-| ---------------- |:-------------------------:| ------:|
-| TCM              | 0x4000_0000 - 0x4000_7FFF | 32kB   | 
-| LSRAM            | 0x8000_0000 - 0x8000_7FFF | 32kB   |
+| Memory Source                    | Address Start | Address End | Size   |
+| :------------------------------: |:-------------:|:--------------------:|
+| TCM                              | 0x4000_0000   | 0x4000_7FFF | 32kB   | 
+| LSRAM (SRC_MEM)                  | 0x8000_0000   | 0x8000_7FFF | 32kB   |
 
 
-
- <del>   
-### Choice 2 - Memory Sources
-    
-|CFG  | Memory Source    | Address Range             | Size   | Bootable |
-|----:| ---------------- |:-------------------------:| ------:| --------:|
-|DGC2 | TCM              | 0x4000_0000 - 0x4000_7FFF | 32kB   | Yes      |
-|DGC2 | LSRAM            | 0x8000_0000 - 0x8000_7FFF | 32kB   | Yes      |
-    
-</del>
