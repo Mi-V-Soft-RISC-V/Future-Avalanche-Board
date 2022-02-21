@@ -93,7 +93,7 @@ the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloa
 ##### Peripherals - MIV_ESS
 
 | Peripheral                       | Address Start | Address End    |
-| :------------------------------: |:-------------:|:--------------:|
+| ------------------------------:  |:-------------:|:--------------:|
 | PLIC                             | 0x7000_0000   | 0x70FF_FFFF    |
 | CoreUARTapb                      | 0x7100_0000   | 0x71FF_FFFF    |
 | Timer                            | 0x7200_0000   | 0x72FF_FFFF    |
@@ -105,7 +105,7 @@ the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloa
 | WDOG                             | 0x7900_0000   | 0x79FF_FFFF    |
 | I2C                              | 0x7A00_0000   | 0x7AFF_FFFF    |
 | MIV_ESS_APBSLOTB_BASE            | 0x7B00_0000   | 0x7BFF_FFFF    |
-| MIV_ESS_APBSLOTc_BASE            | 0x7C00_0000   | 0x7CFF_FFFF    |
+| MIV_ESS_APBSLOTC_BASE            | 0x7C00_0000   | 0x7CFF_FFFF    |
 | MIV_ESS_APBSLOTD_BASE            | 0x7D00_0000   | 0x7DFF_FFFF    |
 | MIV_ESS_APBSLOTE_BASE            | 0x7E00_0000   | 0x7EFF_FFFF    |
 | MIV_ESS_APBSLOTF_BASE            | 0x7F00_0000   | 0x7FFF_FFFF    |
@@ -113,7 +113,7 @@ the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloa
 ##### Memory Sources
     
 | Memory Source                    | Address Start | Address End | Size   |
-| :------------------------------: |:-------------:|:-----------:|:------:|
+| -------------------------------: |:-------------:|:-----------:|:------:|
 | TCM                              | 0x4000_0000   | 0x4000_7FFF | 32kB   | 
 | LSRAM                            | 0x8000_0000   | 0x8000_7FFF | 32kB   |
 
