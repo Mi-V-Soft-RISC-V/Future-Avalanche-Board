@@ -43,27 +43,27 @@ The complete set of script arguments are documented here.
 
 ### Software Provided
 There are two programs included with this configuration:
-1. 'miv-rv32i-systick-blinky.hex' - A .hex program configured to run from TCM's address (0x4000_0000). The program is initialized in the LSRAM component at 0x8000_0000 and it is accessible over the AHB I/F
-    a. The .hex program was generated with 'miv-rv32i-systick-blinky' software project, using the 'mivrv32i-Release' program configuration.
-2. 'miv-rv32-ess-bootloader.elf' - An .elf file that can be debugged from TCM @ 0x4000_0000. The program can be used to write data from LSRAM (SRC_MEM) @ 0x8000_0000 to external memory I2C or SPI.
-    b. The .elf program was compiled with 'miv-rv32-ess-bootloader.elf' software project, using the 'Bootstrap' program configuration
+* **miv-rv32i-systick-blinky.hex**: A Hex program configured to run from TCM's address (0x4000_0000). The program is initialized in the LSRAM component at 0x8000_0000 and it is accessible over the AHB interface.
+    > The example hex program was created using  miv-rv32i-systick-blinky in release mode (mivrv32i-Release).
+* **miv-rv32-ess-bootloader.elf**: The supplied elf file is used to copy data from the LSRAM (SRC_MEM) @0x8000_0000 to external flash memory connected to either  I2C or SPI.
+    > The .elf program was compiled using 'miv-rv32-ess-bootloader' in Bootstrap mode.
 
 
-#### Running a Bootloader.elf program for DGC2
-A Bootloader.elf file, a compiled software program is provided with the configuration. Located in the DGC2's Libero project directory after TCL execution. The program can write the blinky program from LSRAM to I2C EEPROM. The MIV_ESS's Bootstrap module can then copy this program from I2C EEPROM to TCM and, allow MIV_RV32 to boot from it. 
+#### Running a Bootloader .elf program for DGC2
+The provided program, *miv-rv32-ess-bootloader.elf* , is available in the Libero project folder after the *create_project* .tcl script has been run for the Design Configuration 2 (DGC2). The program can be used to transfer a program stored in LSRAM to an external I2C EEPROM. The MIV_ESS can then copy the code to the MIV_RV32 Tightly Coupled Memory (TCM), then the MIV_RV32 can boot the copied code.
 
-Refer to the [Mi-V Soft processor Bare Metal Examples](www.link.link) for more information on the software.
-To run the Bootloader.elf program, follow the steps below or refer to the [MIV_ESS Design Guide](www.link.link) for a more detailed instructions:
+The sources are available from the [Mi-V Soft processor Bare Metal examples](www.link.link)
+To run the Bootloader .elf program, follow the steps below or refer to the [MIV_ESS Design Guide](www.link.link) for more detailed instructions:
+> A DGC2 Libero design directory is required to have been created to access the .elf file. The hardware needs to be programmed with DGC2 bitstream
 
-    1. A DGCn Libero design directory is required to have been created to access the elf. file. The hardware needs to be programmed with DGCn bitstream
-    2. Open SoftConsole (v2021.1 above)
-    3. From Run > Debug Configurations, double click GDB OpenOCD Debugging
-    4. In the Main window, select C/C++ Applications using the Browse button, then navigate to your Libero's project directory ./MIV_DGCn_BD and select the Bootloader.elf file
-    5. Select the Debugger tab to set up OpenOCD and GDB
+    1. Open SoftConsole (v2021.1 above)
+    2. From Run > Debug Configurations, double click GDB OpenOCD Debugging
+    3. In the Main window, select C/C++ Applications using the Browse button, then navigate to your Libero's project directory ./MIV_DGC2_BD and select the Bootloader .elf file
+    4. Select the Debugger tab to set up OpenOCD and GDB
         a. To set up OpenOCD, check the Start OpenOCD locally check box and browse to the OpenOCD path <SoftConsole-install-directory>\openocd\bin\openocd.exe
         b. To set up GDB, browse to the GDB path <SoftConsole-install-directory>\riscv-unknownelf-gcc\bin\riscv64-unknown-elf-gdb.exe.
-    6. Click **Apply**
-    7. Click Debug to launch the debug session. 
+    5. Click **Apply**
+    6. Click Debug to launch the debug session. 
 
     
 ### Design Guide Configuration
@@ -79,17 +79,16 @@ The Libero designs include the following features:
 * An Extended subsystem for peripheral cores (language here?)
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* Options ?:
-* User peripherals: MIV_ESS, 2 Timers, 2 GPIO Inputs and 4 GPIO Outputs
-* or
-* MIV_ESS peripherals (or modules?): I2C, Bootstrap with an TAS APB I/F Writer, UART, 2 GPIO Inputs, 4 GPIO Outputs 
+* User peripherals: MIV_ESS, 2 Timers, 2 GPIO Inputs and 4 GPIO Outputs **REVIEW THIS** 
+* User peripherals: MIV_ESS, CoreTimer **REVIEW THIS** 
+* MIV_ESS peripherals: I2C, Bootstrap, UART, 2 GPIO Inputs, 4 GPIO Outputs **REVIEW THIS** 
 
 ##### Boot Sequence (currently being worked on)
 The Bootstrap module is enabled by default in DGC2. By default, it remains in bypass mode after programming the bitstream. Push-button (?) needs to be activated to lift the bypass mode off, allowing for a boot sequence to occur. The boot sequence looks as follows
     * A .hex program generated using the 'miv-rv32i-systick-blinky' software project is stored in the LSRAM component. The program was generated using the 'mivrv32i-Release' configuration.
     * The .hex program has been compiled for 0x4000_0000 
 
-the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader.elf file, a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. 
+the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader .elf file, a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. 
 
 ##### Peripherals - MIV_ESS
 
@@ -112,10 +111,12 @@ the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloa
 | TCM              | 0x4000_0000 - 0x4000_7FFF | 32kB   | 
 | LSRAM            | 0x8000_0000 - 0x8000_7FFF | 32kB   |
     
-    
+ <del>   
 ### Choice 2 - Memory Sources
     
 |CFG  | Memory Source    | Address Range             | Size   | Bootable |
 |----:| ---------------- |:-------------------------:| ------:| --------:|
 |DGC2 | TCM              | 0x4000_0000 - 0x4000_7FFF | 32kB   | Yes      |
 |DGC2 | LSRAM            | 0x8000_0000 - 0x8000_7FFF | 32kB   | Yes      |
+    
+</del>
