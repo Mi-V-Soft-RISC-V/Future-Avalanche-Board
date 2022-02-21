@@ -46,7 +46,12 @@ The DGC2 design uses the Bootstrap module to copy data into TCM from external I2
     4. ...
     5. ...
 
-## DGC2 Features
+### Design Guide Configuration
+The project contains MIV_ESS Design Guide configuration design script that uses MIV_ESS companion core.
+
+## DGC2 - I2C Write & I2C Boot
+
+### Features
 The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
@@ -58,11 +63,13 @@ The Libero designs include the following features:
 * or
 * MIV_ESS peripherals (or modules?): I2C, Bootstrap with an TAS APB I/F Writer, UART, 2 GPIO Inputs, 4 GPIO Outputs 
 
-### DGC2 Description
-The design uses MIV_ESS companion core 
+### Boot Sequence
+The Bootstrap module is enabled by default in DGC2. By default, it remains in bypass mode after programming the bitstream. Push-button (?) needs to be activated to lift the bypass mode off, allowing for a boot sequence to occur. The boot sequence looks as follows
+    * A .hex program generated using the 'miv-rv32i-systick-blinky' software project is stored in the LSRAM component. The program was generated using the 'mivrv32i-Release' configuration.
+    * The .hex program has been compiled for 0x4000_0000 
 
-#### Boot Sequence
-After programming, by default, the Bootstrap remains in bypass mode...
+#### DGC2
+The Bootstrap and I2C modules are both enabled in this configuration. A 
 
 
 #### Peripherals map for MIV_ESS DGC2 design
