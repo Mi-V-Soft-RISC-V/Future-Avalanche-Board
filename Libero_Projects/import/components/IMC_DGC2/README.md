@@ -7,19 +7,25 @@ Information on the provided Libero SoC v2021.3 DGC2 project is listed here...
 | :------:|:----------------------------------------|
 | DGC2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
 
-**Note:** DGC2 exists strictly with PF_Avalanche_MIV_RV32_BaseDesign (only available for the rev. 3 board with a production silicon device)
+**Note:** This design configuration is only available for the  Polar Fire Avalanche Kit (Revision 3 with production silicon devices). 
 
 ## <a name="quick"></a> Instructions
 
 #### Running Libero SoC in GUI mode, with Script Arguments
-    a. For running the design in Libero SoC in GUI mode, follow steps 1 to 4 from main readme: <link to the main readme>
-    b. In the arguments text box, enter "DGC2 SYNTHESIZE"
-    c. Follow step 6 and step 7
+    1. Open Libero SoC
+    2. Execute the selected script, Project -> Execute Script
+    3. Select the directory that the script is located in, using the "..."
+    4. Select the script and select "Open"
+    5. In the arguments text box, enter "DGC2 SYNTHESIZE"
+    6. Select the "Run" button to execute the script
+    7. Once complete, a script report will be generated.
 
 In this example, the arguments "DGC2 SYNTHESIZE" are entered to take the project through to Synthesis.
 
+Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
+
 ## <a name="Script arguments"></a> Script Arguments
-In the examples above the arguments "DGC2" and "DGC2 SYNTHESIZE" were entered. The complete set of script arguments are documented here.
+The complete set of script arguments are documented here.
 
 #### First argument:
 | Argument                  |  Description   |
