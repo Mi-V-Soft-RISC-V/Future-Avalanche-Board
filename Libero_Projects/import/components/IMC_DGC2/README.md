@@ -1,7 +1,7 @@
 ## Mi-V Extended Subsystem Design Guide Configuration 2: I2C Write & Boot
 This folder contains Tcl scripts that build Libero SoC v2021.3 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
 
-#### PF_Avalanche_MIV_RV32_BaseDesign (no ES equivalent)
+#### PF_Avalanche_MIV_RV32_BaseDesign (no PolarFire Engineering Sample silicon project for DGC2)
 
 | Config  | Description|
 | :------:|:----------------------------------------|
