@@ -82,7 +82,7 @@ The Libero designs include the following features:
 * Target memory is SRAM/TCM (32kB)
 * User peripherals: MIV_ESS (Bootstrap, I2C, GPIO, UART) **REVIEW THIS** 
 
-##### Boot Sequence Operation (currently being worked on)
+##### Boot Sequence Operation
 A more detailed description of the boot sequence can be found in this section.
 
 Pre-requisites:
