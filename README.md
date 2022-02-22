@@ -28,12 +28,11 @@ The Libero designs include the following features:
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
+* User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
 
 ## Target Hardware
 Details of the Future Avalanche Board and it's features can be found:
 * [AVMPF300TS-03](https://www.microsemi.com/existing-parts/parts/139680) (MPF300TS_ES)
-* Link to PS ?
 
 # FlashPro Express
 The FlashPro_Express_Projects folder contains the pre-generated programming files, which can be downloaded directly to the target board using FlashPro Express.
