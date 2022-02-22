@@ -48,7 +48,7 @@ The complete set of script arguments are documented here.
 ## <a name="Software Provided"></a> Software Provided
 There are two programs included with this configuration:
 * **miv-rv32i-systick-blinky.hex**: A Hex program configured to run from TCM's address (0x4000_0000). The program is initialized in the LSRAM component at 0x8000_0000 and it is accessible over the AHB interface.
-    > The example hex program was created using  miv-rv32i-systick-blinky in release mode (mivrv32i-Release).
+    > The example hex program was created using  miv-rv32i-systick-blinky in release mode (miv32i-Release).
 * **miv-rv32-ess-bootloader.elf**: The supplied Bootloader .elf file is used to copy data from the LSRAM (SRC_MEM) @0x8000_0000 to external I2C Flash memory (Dual EE Click board required)
     > The .elf program was compiled using 'miv-rv32-ess-bootloader' in Bootstrap mode.
 
