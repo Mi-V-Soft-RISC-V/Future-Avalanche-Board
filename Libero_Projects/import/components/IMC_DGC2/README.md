@@ -56,7 +56,7 @@ There are two programs included with this configuration:
 The provided program, *miv-rv32-ess-bootloader.elf* , is available in the Libero project folder after the *create_project* .tcl script has been run for the Design Configuration 2 (DGC2). The program can be used to transfer a program stored in LSRAM to an external I2C EEPROM. The MIV_ESS can then copy the code to the MIV_RV32 Tightly Coupled Memory (TCM), then the MIV_RV32 can boot the copied code.
 
 The sources are available from the [Mi-V Soft processor Bare Metal examples](https://github.com/Mi-V-Soft-RISC-V/miv-rv32-bare-metal-examples).
-To run the Bootloader .elf program, follow the steps below or refer to the [MIV_ESS Design Guide](www.link.link) for more detailed instructions:
+To run the Bootloader .elf program, follow the steps below or refer to the [MIV_ESS Design Guide](www.link.link) **NEED a Link UPDATE** for more detailed instructions:
 > A DGC2 Libero design directory is required to have been created to access the .elf file. The hardware needs to be programmed with DGC2 bitstream
 
     1. Open SoftConsole (v2021.1 or above)
