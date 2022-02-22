@@ -60,6 +60,7 @@ In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. T
 | Argument                  |  Description   |
 | ------------------------- |:---------------|
 | CFG1..CFGn                | Generate a sample design for the selected configuration                           |
+| DGC2                      | Generate a MIV_ESS example design from the MIV_ESS Design Guide |
 
 
 #### Second argument:
