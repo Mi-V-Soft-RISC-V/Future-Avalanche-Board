@@ -48,6 +48,7 @@ There are two programs included with this configuration:
 * **miv-rv32-ess-bootloader.elf**: The supplied elf file is used to copy data from the LSRAM (SRC_MEM) @0x8000_0000 to external flash memory connected to either  I2C or SPI.
     > The .elf program was compiled using 'miv-rv32-ess-bootloader' in Bootstrap mode.
 
+> This design requires a Dual EE Click board from mikroBUS inserted into the mikroBUS header on the Avalanche Development Kit board. The Dual EE Click is available at [Mikroe.com](wwww.mikroe.com).
 
 #### Running a Bootloader .elf program for DGC2
 The provided program, *miv-rv32-ess-bootloader.elf* , is available in the Libero project folder after the *create_project* .tcl script has been run for the Design Configuration 2 (DGC2). The program can be used to transfer a program stored in LSRAM to an external I2C EEPROM. The MIV_ESS can then copy the code to the MIV_RV32 Tightly Coupled Memory (TCM), then the MIV_RV32 can boot the copied code.
@@ -79,34 +80,20 @@ The Libero designs include the following features:
 * An Extended subsystem for peripheral cores (language here?)
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* User peripherals: MIV_ESS, 2 Timers, 2 GPIO Inputs and 4 GPIO Outputs **REVIEW THIS** 
-* User peripherals: MIV_ESS, CoreTimer **REVIEW THIS** 
-* MIV_ESS peripherals: I2C, Bootstrap, UART, 2 GPIO Inputs, 4 GPIO Outputs **REVIEW THIS** 
+* User peripherals: MIV_ESS (Bootstrap, I2C, GPIO, UART) **REVIEW THIS** 
 
 ##### Boot Sequence Operation (currently being worked on)
 A more detailed description of the boot sequence can be found in this section.
-> The board needs to be programmed withProgram the board with DGC2 bitstream. Build the Libero design as specified in section: 
-> Use the provided *miv-rv32-ess-bootloader.elf* to write data to external memory I2C EEPROM
+
+Pre-requisites:
+> Ensure the Dual EE Click board is connected to the Avaanche Board mikroBUS header.
+> The board needs to be programmed withProgram the board with DGC2 bitstream. Refer to this section to run the [Libero Design](#Running Libero SoC in GUI mode, with Script Arguments)
+> Initiating the Boot Sequence for DGC2, requires data to be previously written to external memory I2C EEPROM. Use the provided Bootloader .elf program *miv-rv32-ess-bootloader.elf* to write the *miv-rv32i-systick-blinky.hex* program in the LSRAM to the external memory I2C Flash.
 
     1. On power-on, hold SW1 to disable *BOOTSTRAP_BYPASS* on MIV_ESS. Then press and release SW2 to perform a system reset request.
-    2. The Bootstrap will initiate the data transfer into TCM via the TAS interface. The transfer from I2C EEPROM is complete once LEDs on the board start blinking, SW1 can then be released.
-
-<del>
-the MIV_ESS copies a program from the I2C Flash device to the MIV_RV32 Tightly-Coupled Memory (TCM). When the MIV_ESS releases the MIV_RV32 reset, the MIV_RV32 will boot the application. The following steps describe how this is accomplished.
-1. Connect the Dual EE Click board to the Avalanche Board mikroBUS header and program the bitstream to the development kit.
-3. Program the bitstream to the development kit.
-Note: This design is set up to disable the BOOTSTRAP_BYPASS, by default.
-
-
-The Bootstrap module is enabled by default in DGC2. By default, it remains in bypass mode after programming the bitstream. Push-button (?) needs to be activated to lift the bypass mode off, allowing for a boot sequence to occur. The boot sequence looks as follows
-    * A .hex program generated using the 'miv-rv32i-systick-blinky' software project is stored in the LSRAM component. The program was generated using the 'mivrv32i-Release' configuration.
-    * The .hex program has been compiled for 0x4000_0000 
-
-</del>    
-    
-> This design requires a Dual EE Click board from mikroBUS inserted into the mikroBUS header on the Avalanche Development Kit board. The Dual EE Click is available at [Mikroe.com](wwww.mikroe.com).
-
-the Bootstrap module to copy data into TCM from external I2C EEPROM. The Bootloader .elf file, a compiled software project that is capable of writing data from SRC_MEM (LSRAM) to external memory I2C. 
+    2. MIV_ESS copies a program from the I2C Flash device to the MIV_RV32 Tightly-Coupled Memory (TCM) via the TCM APB Slave (TAS) interface.
+    3. When the transfer from I2C Flash is complete, MIV_ESS releases MIV_RV32 core from reset and MIV_RV32 is allowed to boot the program from TCM
+    4. The LEDs on the Future Avalanche Board will start blinking, signifying Bootstrap has completed its transfer and SW1 can then be released.   
 
 ##### Peripherals - MIV_ESS
 
