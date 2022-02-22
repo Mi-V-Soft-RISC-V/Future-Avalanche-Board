@@ -1,7 +1,18 @@
 ## Future Avalanche Board Mi-V Sample FPGA Designs
-This folder contains Tcl scripts that build Libero SoC v2021.3 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. ~~All cores boot from memory at 0x8000_0000.~~
+This folder contains Tcl scripts that build Libero SoC v2021.3 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All Configuration (CFG) design cores boot from memory at 0x8000_0000.
 
-**Mention only the PS scripts have the DGC 
+For Design Guide Configuration (DGC) refer to this [README](https://github.com/seb-slowiko/Future-Avalanche-Board-1/blob/v2021-3_sample_2/Libero_Projects/import/components/IMC_DGC2/README.md)
+
+#### PF_Avalanche_MIV_RV32_BaseDesign (or ES equivalent)
+
+| Config  | Description|
+| :------:|:----------------------------------------|
+| CFG1    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| DGC2    | This design uses the MIV_RV32 core configured as follows:  <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master
+|         | The design also features the MIV_ESS companion core configured as follows: ... please refer to the design guide for more information <add the link to the design guide here> add a link in to the [DGC2 readme](https://github.com/seb-slowiko/Future-Avalanche-Board-1/blob/v2021-3_sample_2/Libero_Projects/import/components/IMC_DGC2/README.md) <link>
+    
 
 #### PF_Avalanche_MIV_RV32IMA_BaseDesign (or ES equivalent)
 
@@ -16,20 +27,6 @@ This folder contains Tcl scripts that build Libero SoC v2021.3 design projects f
 | Config  |Description |
 | :------:|:-----------|
 | CFG1    |  This design uses the MIV_RV32IMAF_L1_AHB core with an **AHB** interface for memory and peripherals|
-
-
-
-#### PF_Avalanche_MIV_RV32_BaseDesign (or ES equivalent)
-
-
-| Config  | Description|
-| :------:|:----------------------------------------|
-| CFG1    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| DGC2    | This design uses the MIV_RV32 core configured as follows:  <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master
-|         | The design also features the MIV_ESS companion core configured as follows: ... please refer to the design guide for more information <add the link to the design guide here> add a link in to the [DGC2 readme](https://github.com/seb-slowiko/Future-Avalanche-Board-1/blob/v2021-3_sample_2/Libero_Projects/import/components/IMC_DGC2/README.md) <link>
-
 
 
 ## <a name="quick"></a> Instructions
@@ -65,7 +62,6 @@ In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. T
 | Argument                  |  Description   |
 | ------------------------- |:---------------|
 | CFG1..CFGn                | Generate a sample design for the selected configuration                           |
-| DGC2                      | Generate a MIV_ESS example design from the MIV_ESS Design Guide <link the DG UG>  |
 
 
 #### Second argument:
@@ -76,13 +72,14 @@ In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. T
 | GENERATE_BITSTREAM        | Generate the bitstream for the design|
 | EXPORT_PROGRAMMING_FILE   | Export the programming file (.job) |
 
+    
 ## Design Features
 The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
+* User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
 
 The peripherals in this design are located at the following addresses.
 
@@ -94,5 +91,3 @@ The peripherals in this design are located at the following addresses.
 | CoreTimer_1   | 0x7000_4000   |
 | CoreGPIO_OUT  | 0x7000_5000   |
 | SRAM| 0x8000_0000|
-
-**Note:** For Design Guide Configurations (DGC) refer to this README <link>
