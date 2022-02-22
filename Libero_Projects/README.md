@@ -82,7 +82,8 @@ The Libero designs include the following features:
 * Target memory is SRAM/TCM (32kB)
 * User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
 
-> For Design Guide Configuration - DGC2 design features, refer to [DGC2 README] <<link>>
+> MI-V Extended Subsystem Design Guide Configurations:
+> * For **DGC2: I2C Write & Boot** design features, refer to [DGC2 README](import/components/IMC_DGC2/README.md)
 
 The peripherals in this design are located at the following addresses.
 
