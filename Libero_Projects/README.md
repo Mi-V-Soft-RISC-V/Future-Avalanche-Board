@@ -1,7 +1,7 @@
 ## Future Avalanche Board Mi-V Sample FPGA Designs
 This folder contains Tcl scripts that build Libero SoC v2021.3 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All Configuration (CFG) design cores boot from memory at 0x8000_0000.
 
-> For **Design Guide Configuration 2 (DGC)** refer to this [README](https://github.com/seb-slowiko/Future-Avalanche-Board-1/blob/v2021-3_sample_2/Libero_Projects/import/components/IMC_DGC2/README.md)
+> For **Design Guide Configuration - DGC2** refer to this [DGC2 README](https://github.com/seb-slowiko/Future-Avalanche-Board-1/blob/v2021-3_sample_2/Libero_Projects/import/components/IMC_DGC2/README.md)
 
 #### PF_Avalanche_MIV_RV32_BaseDesign (or ES equivalent)
 
