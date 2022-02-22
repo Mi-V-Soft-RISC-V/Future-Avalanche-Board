@@ -76,10 +76,10 @@ To run the Bootloader .elf program, follow the steps below or refer to the [MIV_
 The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
-* An Extended subsystem for peripheral cores (language here?)
+* An Extended subsystem with peripheral cores
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* User peripherals: MIV_ESS (Bootstrap, I2C, GPIO, UART) **REVIEW THIS** 
+* User peripherals: MIV_ESS (Bootstrap, I2C, GPIO, UART)
 
 ### Boot Sequence Operation
 A more detailed description of the boot sequence can be found in this section.
