@@ -77,7 +77,7 @@ The Libero designs include the following features:
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
 * Target memory is SRAM/TCM (32kB)
-* User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs
+User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
 
 The peripherals in this design are located at the following addresses.
 
