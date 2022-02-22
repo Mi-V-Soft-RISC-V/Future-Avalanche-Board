@@ -1,13 +1,17 @@
 ## Mi-V Extended Subsystem Design Guide Configuration 2: I2C Write & Boot
-This folder contains Tcl scripts that build Libero SoC v2021.3 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
+This folder contains Tcl scripts that build Libero SoC v2021.3* MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
+> Design is catered for Libero SoC v2021.3. Using older versions of Libero SoC will result in errors.
 
 #### PF_Avalanche_MIV_RV32_BaseDesign (no PolarFire Engineering Sample silicon project for DGC2)
 
-| Config  | Description|
+| Config  | Description |
 | :------:|:----------------------------------------|
 | DGC2    | This design uses the **MIV_RV32** core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Reset Vector Address: 0x4000_0000</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>TCM APB Slave (TAS): Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>This design uses the **MIV_ESS** core configured as follows: <ul><li>Bootstrap: Enabled</li><li>Bootstrap Source: I2C</li><li>uDMA: Disabled</li><li>GPIO: Enabled, 2 GPIO_IN and 4 GPIO_OUT (fixed config)</li><li>I2C: Enabled, Two-Byte I2C Address</li><li>PLIC: Disabled</li><li>SPI: Disabled</li><li>Timer: Disabled</li><li>UART: Enabled</li><li>Watchdog: Disabled</li></ul>|
 
-**Note:** This design configuration is only available for the  Polar Fire Avalanche Kit (Revision 3 with production silicon devices). For programming and debugging, this configuration requires the Dual EE Click board to be connected the Avalanche Board mikroBUS headerconnected to the MikroBus header fo
+> This design configuration is only available for the PolarFire Avalanche Kit (Revision 3 with production silicon devices).
+
+**Important**: This design requires a Dual EE Click board from mikroBUS inserted into the mikroBUS header on the Avalanche Development Kit board. The Dual EE Click is available at [Mikroe.com](https://www.mikroe.com/dual-ee-click).
+
 
 ## <a name="quick"></a> Instructions
 
@@ -41,14 +45,12 @@ The complete set of script arguments are documented here.
 | EXPORT_PROGRAMMING_FILE   | Export the programming file (.job) |
 
 
-### Software Provided
+## <a name="Software Provided"></a> Software Provided
 There are two programs included with this configuration:
 * **miv-rv32i-systick-blinky.hex**: A Hex program configured to run from TCM's address (0x4000_0000). The program is initialized in the LSRAM component at 0x8000_0000 and it is accessible over the AHB interface.
     > The example hex program was created using  miv-rv32i-systick-blinky in release mode (mivrv32i-Release).
-* **miv-rv32-ess-bootloader.elf**: The supplied elf file is used to copy data from the LSRAM (SRC_MEM) @0x8000_0000 to external flash memory connected to either  I2C or SPI.
+* **miv-rv32-ess-bootloader.elf**: The supplied Bootloader .elf file is used to copy data from the LSRAM (SRC_MEM) @0x8000_0000 to external I2C Flash memory (Dual EE Click board required)
     > The .elf program was compiled using 'miv-rv32-ess-bootloader' in Bootstrap mode.
-
-> This design requires a Dual EE Click board from mikroBUS inserted into the mikroBUS header on the Avalanche Development Kit board. The Dual EE Click is available at [Mikroe.com](wwww.mikroe.com).
 
 #### Running a Bootloader .elf program for DGC2
 The provided program, *miv-rv32-ess-bootloader.elf* , is available in the Libero project folder after the *create_project* .tcl script has been run for the Design Configuration 2 (DGC2). The program can be used to transfer a program stored in LSRAM to an external I2C EEPROM. The MIV_ESS can then copy the code to the MIV_RV32 Tightly Coupled Memory (TCM), then the MIV_RV32 can boot the copied code.
@@ -66,14 +68,11 @@ To run the Bootloader .elf program, follow the steps below or refer to the [MIV_
     5. Click **Apply**
     6. Click Debug to launch the debug session. 
 
-### Design Guide Configuration
+## <a name="Design Guide Configuration - DGC2: I2C Write & Boot"></a> Design Guide Configuration - DGC2: I2C Write & Boot
 The project contains MIV_ESS Design Guide configuration design script that uses MIV_ESS companion core.
-> For programming and debugging, this configuration requires the Dual EE Click board to be connected the Avalanche Board mikroBUS header
+> This design requires a Dual EE Click board from mikroBUS inserted into the mikroBUS header on the Avalanche Development Kit board. The Dual EE Click is available at [Mikroe.com](https://www.mikroe.com/dual-ee-click).
 
-#### DGC2 - I2C Write & I2C Boot
-The Bootstrap and I2C modules are both enabled in this configuration.
-
-##### Features
+### Features
 The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
@@ -82,20 +81,20 @@ The Libero designs include the following features:
 * Target memory is SRAM/TCM (32kB)
 * User peripherals: MIV_ESS (Bootstrap, I2C, GPIO, UART) **REVIEW THIS** 
 
-##### Boot Sequence Operation
+### Boot Sequence Operation
 A more detailed description of the boot sequence can be found in this section.
 
-Pre-requisites:
-> Ensure the Dual EE Click board is connected to the Avaanche Board mikroBUS header.
-> The board needs to be programmed withProgram the board with DGC2 bitstream. Refer to this section to run the [Libero Design](#Running Libero SoC in GUI mode, with Script Arguments)
-> Initiating the Boot Sequence for DGC2, requires data to be previously written to external memory I2C EEPROM. Use the provided Bootloader .elf program *miv-rv32-ess-bootloader.elf* to write the *miv-rv32i-systick-blinky.hex* program in the LSRAM to the external memory I2C Flash.
+> Pre-requisites:
+> * Ensure the Dual EE Click board is inserted correctly in the mikroBUS header on the Future Avalanche Board.
+> * The board needs to be programmed with DGC2 bitstream. Refer to this section, run the [Libero Design](#Running Libero SoC in GUI mode, with Script Arguments)
+> * Initiating the Boot Sequence for DGC2, requires data to be previously written to external memory I2C EEPROM. Use the provided Bootloader .elf program *miv-rv32-ess-bootloader.elf* to write the *miv-rv32i-systick-blinky.hex* program in the LSRAM to the external memory I2C Flash.
 
     1. On power-on, hold SW1 to disable *BOOTSTRAP_BYPASS* on MIV_ESS. Then press and release SW2 to perform a system reset request.
     2. MIV_ESS copies a program from the I2C Flash device to the MIV_RV32 Tightly-Coupled Memory (TCM) via the TCM APB Slave (TAS) interface.
     3. When the transfer from I2C Flash is complete, MIV_ESS releases MIV_RV32 core from reset and MIV_RV32 is allowed to boot the program from TCM
     4. The LEDs on the Future Avalanche Board will start blinking, signifying Bootstrap has completed its transfer and SW1 can then be released.   
 
-##### Peripherals - MIV_ESS
+### Peripherals - MIV_ESS
 
 | Peripheral                       | Address Start | Address End    |
 | ------------------------------:  |:-------------:|:--------------:|
@@ -115,7 +114,7 @@ Pre-requisites:
 | MIV_ESS_APBSLOTE_BASE            | 0x7E00_0000   | 0x7EFF_FFFF    |
 | MIV_ESS_APBSLOTF_BASE            | 0x7F00_0000   | 0x7FFF_FFFF    |
     
-##### Memory Sources
+### Memory Sources
     
 | Memory Source                    | Address Start | Address End | Size   |
 | -------------------------------: |:-------------:|:-----------:|:------:|
