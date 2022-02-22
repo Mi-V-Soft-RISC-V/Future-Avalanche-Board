@@ -57,7 +57,7 @@ The provided program, *miv-rv32-ess-bootloader.elf* , is available in the Libero
 
 The sources are available from the [Mi-V Soft processor Bare Metal examples](https://github.com/Mi-V-Soft-RISC-V/miv-rv32-bare-metal-examples).
 To run the Bootloader .elf program, follow the steps below or refer to the [MIV_ESS Design Guide](www.link.link) **NEED a Link UPDATE** for more detailed instructions:
-> A DGC2 Libero design directory is required to have been created to access the .elf file. The hardware needs to be programmed with DGC2 bitstream
+> A DGC2 Libero design directory is required to have been created to access the .elf file. The hardware needs to be programmed with DGC2 bitstream.
 
     1. Open SoftConsole (v2021.1 or above)
     2. From Run > Debug Configurations, double click GDB OpenOCD Debugging
@@ -65,11 +65,11 @@ To run the Bootloader .elf program, follow the steps below or refer to the [MIV_
     4. Select the Debugger tab to set up OpenOCD and GDB
         a. To set up OpenOCD, check the Start OpenOCD locally check box and browse to the OpenOCD path <SoftConsole-install-directory>\openocd\bin\openocd.exe
         b. To set up GDB, browse to the GDB path <SoftConsole-install-directory>\riscv-unknownelf-gcc\bin\riscv64-unknown-elf-gdb.exe.
-    5. Click **Apply**
+    5. Click Apply
     6. Click Debug to launch the debug session. 
 
 ## <a name="Design Guide Configuration - DGC2: I2C Write & Boot"></a> Design Guide Configuration - DGC2: I2C Write & Boot
-The project contains MIV_ESS Design Guide configuration design script that uses MIV_ESS companion core.
+
 > This design requires a Dual EE Click board from mikroBUS inserted into the mikroBUS header on the Avalanche Development Kit board. The Dual EE Click is available at [Mikroe.com](https://www.mikroe.com/dual-ee-click).
 
 ### Features
