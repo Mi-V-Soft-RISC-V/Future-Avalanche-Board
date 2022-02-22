@@ -20,7 +20,7 @@ To download or clone the repository:
 
 
 # Libero Projects
-The Libero_Projects folder contains [sample Mi-V Libero designs](https://github.com/seb-slowiko/Future-Avalanche-Board-1/tree/v2021-3/Libero_Projects) for Libero SoC v2021.3. Libero projects for older Libero releases can be downloaded from their [tags](https://github.com/Mi-V-Soft-RISC-V/Future-Avalanche-Board/releases) in this repository.
+The Libero_Projects folder contains [sample Mi-V Libero designs](Libero_Projects) for Libero SoC v2021.3. Libero projects for older Libero releases can be downloaded from their [tags](https://github.com/Mi-V-Soft-RISC-V/Future-Avalanche-Board/releases) in this repository.
 
 ## Design Features
 The Libero designs include the following features:
@@ -54,5 +54,5 @@ the standalone version.
 [SoftConsole](https://www.microsemi.com/product-directory/design-tools/4879-softconsole) is Microchip’s free software development environment facilitating the rapid development of bare-metal and RTOS based C/C++ software for Microchip CPU and SoC based FPGAs. It provides development and debug support for all Microchip SoC FPGAs and 32-bit soft IP CPUs. SoftConsole can be downloaded.
 
 ## Mi-V Soft processor Bare Metal Examples
-A [Firmware](https://bitbucket.microchip.com/projects/FPGA_BU_MIV_SOFT_CPU_ES/repos/miv-rv32-bare-metal-examples/browse?at=refs%2Fheads%2Fmain-2022.02)
+A [Firmware](https://github.com/Mi-V-Soft-RISC-V/miv-rv32-bare-metal-examples)
 repository that provides bare metal embedded software example projects built with Microchip's SoftConsole IDE.
