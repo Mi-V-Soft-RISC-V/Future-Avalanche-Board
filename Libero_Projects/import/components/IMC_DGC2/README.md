@@ -57,7 +57,7 @@ The sources are available from the [Mi-V Soft processor Bare Metal examples](www
 To run the Bootloader .elf program, follow the steps below or refer to the [MIV_ESS Design Guide](www.link.link) for more detailed instructions:
 > A DGC2 Libero design directory is required to have been created to access the .elf file. The hardware needs to be programmed with DGC2 bitstream
 
-    1. Open SoftConsole (v2021.1 above)
+    1. Open SoftConsole (v2021.1 or above)
     2. From Run > Debug Configurations, double click GDB OpenOCD Debugging
     3. In the Main window, select C/C++ Applications using the Browse button, then navigate to your Libero's project directory ./MIV_DGC2_BD and select the Bootloader .elf file
     4. Select the Debugger tab to set up OpenOCD and GDB
