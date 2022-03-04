@@ -1,8 +1,20 @@
 ## Future Avalanche Board Mi-V Sample FPGA Designs
-This folder contains Tcl scripts that build Libero SoC v2021.2 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All cores boot from memory at 0x8000_0000.
+This folder contains Tcl scripts that build Libero SoC v2021.3 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All Configuration (CFG) design cores boot from memory at 0x8000_0000.
+
+> MI-V Extended Subsystem Design Guide Configurations:
+> * For **Design Guide Configuration - DGC2: I2C Write & Boot** refer to this [DGC2 README](import/components/IMC_DGC2/README.md)
 
 
-#### PF_Avalanche_ES_MIV_RV32IMA_BaseDesign
+#### PF_Avalanche_MIV_RV32_BaseDesign (or ES equivalent)
+
+| Config  | Description|
+| :------:|:----------------------------------------|
+| CFG1    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+| CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
+    
+
+#### PF_Avalanche_MIV_RV32IMA_BaseDesign (or ES equivalent)
 
 | Config  | Description |
 | :------:|:------------|
@@ -10,23 +22,11 @@ This folder contains Tcl scripts that build Libero SoC v2021.2 design projects f
 | CFG2    |This design uses the MIV_RV32IMA_L1_AXI core with an **AXI3** interface for memory and peripherals|
 
 
-#### PF_Avalanche_ES_MIV_RV32IMAF_BaseDesign
+#### PF_Avalanche_MIV_RV32IMAF_BaseDesign (or ES equivalent)
 
 | Config  |Description |
 | :------:|:-----------|
 | CFG1    |  This design uses the MIV_RV32IMAF_L1_AHB core with an **AHB** interface for memory and peripherals|
-
-
-
-#### PF_Avalanche_ES_MIV_RV32_BaseDesign
-
-
-| Config  | Description|
-| :------:|:----------------------------------------|
-| CFG1    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IMC</li><li>Multiplier: MACC (Pipelined)</li><li>Interfaces: AHB Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-| CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Master</li><li>Internal IRQs: 6</li><li>TCM: Enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: enabled</li></ul>|
-
 
 
 ## <a name="quick"></a> Instructions
@@ -53,15 +53,16 @@ Libero executes the script and opens the Mi-V sample project. The script adds Ti
 
 In this example, the arguments "CFG1 SYNTHESIZE" are entered to take the project through to Synthesis.
 
-Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
-
+Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.  
+    
 ## <a name="Script arguments"></a> Script Arguments
 In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. The complete set of script arguments are documented here.
 
 #### First argument:
 | Argument                  |  Description   |
 | ------------------------- |:---------------|
-| CFG1..CFGn                | Generate a sample design for the selected configuration  |
+| CFG1..CFGn                | Generate a sample design for the selected configuration                           |
+| DGC2                      | Generate a MIV_ESS example design from the MIV_ESS Design Guide |
 
 
 #### Second argument:
@@ -72,13 +73,17 @@ In the examples above the arguments "CFG1" and "CFG1 SYNTHESIZE" were entered. T
 | GENERATE_BITSTREAM        | Generate the bitstream for the design|
 | EXPORT_PROGRAMMING_FILE   | Export the programming file (.job) |
 
+    
 ## Design Features
 The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
-* Target memory is SRAM (32kB)
-* User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
+* Target memory is SRAM/TCM (32kB)
+* User peripherals: MIV_ESS, 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
+
+> MI-V Extended Subsystem Design Guide Configurations:
+> * For **DGC2: I2C Write & Boot** design features, refer to [DGC2 README](import/components/IMC_DGC2/README.md)
 
 The peripherals in this design are located at the following addresses.
 
