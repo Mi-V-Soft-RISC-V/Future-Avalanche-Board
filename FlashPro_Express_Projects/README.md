@@ -22,7 +22,7 @@ The programming files contained under this folder were exported from the designs
 ## Design Features
 
 > MI-V Extended Subsystem Design Guide Configurations:
-> * For **DGC2: I2C Write & Boot** design features, refer to [DGC2 README](import/components/IMC_DGC2/README.md)
+> * For **DGC2: I2C Write & Boot** design features, refer to [DGC2 README](../Libero_Projects/import/components/IMC_DGC2/README.md)
 
 The following applies only to non MIV_ESS Design Guide: Design Guide Configurations (DGC2)
 
