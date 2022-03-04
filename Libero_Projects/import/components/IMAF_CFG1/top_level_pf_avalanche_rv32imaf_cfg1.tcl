@@ -1,6 +1,7 @@
-#PolarFire Avalanche Board = MPF300T_ES-FCG484I
+#Hardware     : PolarFire Avalanche Board (rev2 or rev3)
+#MIV Cores    : MIV_RV32IMAF_L1_AHB
+#
 #Libero's TCL top level script
-# Core: MIV_RV32IMAF_L1_AHB
 #
 #This Tcl file sources other Tcl files to build the design(on which recursive export is run) in a bottom-up fashion
 
@@ -206,7 +207,9 @@ sd_connect_pins -sd_name ${sd_name} -pin_names {"CoreAHBL_0:AHBmmaster0" "MIV_RV
 
 # Re-enable auto promotion of pins of type 'pad'
 auto_promote_pad_pins -promote_all 1
-# Save the smartDesign
+# Re-arrange SmartDesign layout
+sd_reset_layout -sd_name ${sd_name}
+# Save the SmartDesign
 save_smartdesign -sd_name ${sd_name}
-# Generate SmartDesign BaseDesign
+# Generate the SmartDesign
 generate_component -component_name ${sd_name}
