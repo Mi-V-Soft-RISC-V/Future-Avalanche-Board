@@ -24,7 +24,9 @@ if {"$config" == ""} then {
 #Edge case 2: If user passes an argument to argv1, intended for argv2
 if {"$design_flow_stage" == "ES"} then {
 	set die_variant "ES"
-	argument_third_to_second_shift
+	puts "\n------------------------------------------------------------------------------- \
+		  \r\nInfo: The 2nd Argument was used to pass in the die type. \
+		  \r\n------------------------------------------------------------------------------- \n"
 }
 
 #Edge case 3: If the argv2 is empty, assume PS
@@ -107,15 +109,6 @@ proc  legacy_core_msg { } {
 		  \r\nWarning: This Libero design uses a legacy Mi-V soft processor core. \
 		  \r\nWarning: Legacy Mi-V soft processors are not recommended for new designs. \
 		  \r\nInfo: MIV_RV32 is recommended for new designs. \
-		  \r\n------------------------------------------------------------------------------- \n"
-}
-
-proc argument_third_to_second_shift { } {
-	puts "\n------------------------------------------------------------------------------- \
-		  \r\nInfo: The 2nd Argument was used to pass in the die type. \
-		  \r\nInfo: Building a design for an 'ES' target device. No design flow tools will be run. \
-		  \r\nInfo: To run design flow tools for an 'ES' target device. \
-		  \r\nInfo: Pass in the appropriate string values for the 2nd and 3rd Argument
 		  \r\n------------------------------------------------------------------------------- \n"
 }
 
@@ -224,6 +217,7 @@ if {"$config" == "CFG1"} then {
 	if {[file exists $project_dir] == 1} then {
 		project_exists
 	} else {
+		no_first_argument_entered
 		create_new_project_label
 		if {"$die_variant" == "ES"} then {
 			new_project -location $project_dir -name $project_name -project_description {} -block_mode 0 -standalone_peripheral_initialization 0 -instantiate_in_smartdesign 1 -ondemand_build_dh 1 -hdl {VERILOG} -family {PolarFire} -die {MPF300TS_ES} -package {FCG484} -speed {STD} -die_voltage {1.0} -part_range {EXT} -adv_options {IO_DEFT_STD:LVCMOS 1.8V} -adv_options {RESTRICTPROBEPINS:1} -adv_options {RESTRICTSPIPINS:0} -adv_options {SYSTEM_CONTROLLER_SUSPEND_MODE:0} -adv_options {TEMPR:EXT} -adv_options {VCCI_1.2_VOLTR:EXT} -adv_options {VCCI_1.5_VOLTR:EXT} -adv_options {VCCI_1.8_VOLTR:EXT} -adv_options {VCCI_2.5_VOLTR:EXT} -adv_options {VCCI_3.3_VOLTR:EXT} -adv_options {VOLTR:EXT}
@@ -244,35 +238,35 @@ pre_configure_place_and_route
 
 if {"$design_flow_stage" == "SYNTHESIZE"} then {
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nBegin Synthesis...
+		  \r\nBegin Synthesis... \
 		  \r\n------------------------------------------------------------------------------- \n"
 
     run_tool -name {SYNTHESIZE}
     save_project
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nSynthesis Complete.
+		  \r\nSynthesis Complete. \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 
 } elseif {"$design_flow_stage" == "PLACE_AND_ROUTE"} then {
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nBegin Place and Route...
+		  \r\nBegin Place and Route... \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 	run_verify_timing
 	save_project
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nPlace and Route Complete.
+		  \r\nPlace and Route Complete. \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 
 } elseif {"$design_flow_stage" == "GENERATE_BITSTREAM"} then {
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nGenerating Bitstream...
+		  \r\nGenerating Bitstream... \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 	run_verify_timing
@@ -281,14 +275,14 @@ if {"$design_flow_stage" == "SYNTHESIZE"} then {
     save_project
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nBitstream Generated.
+		  \r\nBitstream Generated. \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 
 } elseif {"$design_flow_stage" == "EXPORT_PROGRAMMING_FILE"} then {
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nExporting Programming Files...
+		  \r\nExporting Programming Files... \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 	run_verify_timing
@@ -304,7 +298,7 @@ if {"$design_flow_stage" == "SYNTHESIZE"} then {
 
 
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nProgramming Files Exported.
+		  \r\nProgramming Files Exported. \
 		  \r\n------------------------------------------------------------------------------- \n"
 
 } elseif {"$design_flow_stage" != ""} then {
@@ -314,7 +308,6 @@ if {"$design_flow_stage" == "SYNTHESIZE"} then {
 } else {
 	no_second_argument_entered
 }
-
 
 
 

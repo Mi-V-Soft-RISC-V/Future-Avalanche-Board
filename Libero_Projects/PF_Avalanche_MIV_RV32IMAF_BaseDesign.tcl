@@ -24,7 +24,9 @@ if {"$config" == ""} then {
 #Edge case 2: If user passes an argument to argv1, intended for argv2
 if {"$design_flow_stage" == "ES"} then {
 	set die_variant "ES"
-	argument_third_to_second_shift
+	puts "\n------------------------------------------------------------------------------- \
+		  \r\nInfo: The 2nd Argument was used to pass in the die type. \
+		  \r\n------------------------------------------------------------------------------- \n"
 }
 
 #Edge case 3: If the argv2 is empty, assume PS
@@ -32,10 +34,8 @@ if {"$die_variant" == ""} then {
 	set die_variant "PS"
 }
 
-append tmp_results RV32
-append project_folder_name MIV_ $tmp_results _ $die_variant _ $config _BD
-#append project_folder_name MIV_ $config _BD
 append target_board $hw_platform _ $die_variant
+append project_folder_name MIV_ $config _BD
 set project_dir "./$project_folder_name"
 append project_name $target_board _ $soft_cpu _ $config _ $sd_reference
 
@@ -112,15 +112,6 @@ proc  legacy_core_msg { } {
 		  \r\n------------------------------------------------------------------------------- \n"
 }
 
-proc argument_third_to_second_shift { } {
-	puts "\n------------------------------------------------------------------------------- \
-		  \r\nInfo: The 2nd Argument was used to pass in the die type. \
-		  \r\nInfo: Building a design for an 'ES' target device. No design flow tools will be run. \
-		  \r\nInfo: To run design flow tools for an 'ES' target device. \
-		  \r\nInfo: Pass in the appropriate string values for the 2nd and 3rd Argument
-		  \r\n------------------------------------------------------------------------------- \n"
-}
-
 proc download_required_direct_cores  { } {
 	download_core -vlnv {Actel:DirectCore:CoreUARTapb:5.7.100} -location {www.microchip-ip.com/repositories/DirectCore}
 	download_core -vlnv {Actel:DirectCore:CoreTimer:2.0.103} -location {www.microchip-ip.com/repositories/DirectCore}
@@ -158,6 +149,7 @@ if {"$config" == "CFG1"} then {
 	if {[file exists $project_dir] == 1} then {
 		project_exists
 	} else {
+		no_first_argument_entered
 		create_new_project_label
 		if {"$die_variant" == "ES"} then {
 			new_project -location $project_dir -name $project_name -project_description {} -block_mode 0 -standalone_peripheral_initialization 0 -instantiate_in_smartdesign 1 -ondemand_build_dh 1 -hdl {VERILOG} -family {PolarFire} -die {MPF300TS_ES} -package {FCG484} -speed {STD} -die_voltage {1.0} -part_range {EXT} -adv_options {IO_DEFT_STD:LVCMOS 1.8V} -adv_options {RESTRICTPROBEPINS:1} -adv_options {RESTRICTSPIPINS:0} -adv_options {SYSTEM_CONTROLLER_SUSPEND_MODE:0} -adv_options {TEMPR:EXT} -adv_options {VCCI_1.2_VOLTR:EXT} -adv_options {VCCI_1.5_VOLTR:EXT} -adv_options {VCCI_1.8_VOLTR:EXT} -adv_options {VCCI_2.5_VOLTR:EXT} -adv_options {VCCI_3.3_VOLTR:EXT} -adv_options {VOLTR:EXT}
