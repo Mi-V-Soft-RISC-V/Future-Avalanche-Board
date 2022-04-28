@@ -2,7 +2,7 @@ set config [string toupper [lindex $argv 0]]
 set design_flow_stage [string toupper [lindex $argv 1]]
 set die_variant [string toupper [lindex $argv 2]]
 
-set hw_platform PF_Everest
+set hw_platform PF_Avalanche
 set soft_cpu MIV_RV32IMAF
 set sd_reference BaseDesign
 
@@ -32,6 +32,8 @@ if {"$design_flow_stage" == "ES"} then {
 #Edge case 3: If the argv2 is empty, assume PS
 if {"$die_variant" == ""} then {
 	set die_variant "PS"
+	puts "\n\rInfo: No 3rd Argument has been entered. \
+		  \r\nInfo: The default die type -'PS' will be used as target \ "
 }
 
 append target_board $hw_platform _ $die_variant
@@ -42,13 +44,13 @@ append project_name $target_board _ $soft_cpu _ $config _ $sd_reference
 
 proc create_new_project_label { } {
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nCreating a new project for the 'PF_Everest' board. \
+		  \r\nCreating a new project for the 'PF_Avalanche' board. \
 		  \r\n------------------------------------------------------------------------------- \n"
 }
 
 proc project_exists { } {
 	puts "\n------------------------------------------------------------------------------- \
-		  \r\nError: A project exists for the 'PF_Everest' with this configuration. \
+		  \r\nError: A project exists for the 'PF_Avalanche' with this configuration. \
 		  \r\n------------------------------------------------------------------------------- \n"
 }
 
@@ -157,7 +159,6 @@ if {"$config" == "CFG1"} then {
 			invalid_third_argument
 		} else {
 			new_project -location $project_dir -name $project_name -project_description {} -block_mode 0 -standalone_peripheral_initialization 0 -instantiate_in_smartdesign 1 -ondemand_build_dh 1 -hdl {VERILOG} -family {PolarFire} -die {MPF300TS} -package {FCG484} -speed {STD} -die_voltage {1.0} -part_range {IND} -adv_options {IO_DEFT_STD:LVCMOS 1.8V} -adv_options {RESTRICTPROBEPINS:1} -adv_options {RESTRICTSPIPINS:0} -adv_options {SYSTEM_CONTROLLER_SUSPEND_MODE:0} -adv_options {TEMPR:IND} -adv_options {VCCI_1.2_VOLTR:IND} -adv_options {VCCI_1.5_VOLTR:IND} -adv_options {VCCI_1.8_VOLTR:IND} -adv_options {VCCI_2.5_VOLTR:IND} -adv_options {VCCI_3.3_VOLTR:IND} -adv_options {VOLTR:IND}
-			no_third_argument_entered
 		}
 		download_required_direct_cores
 		source ./import/components/IMAF_CFG1/import_sd_and_constraints_imaf_cfg1.tcl
@@ -177,7 +178,6 @@ if {"$config" == "CFG1"} then {
 			invalid_third_argument
 		} else {
 			new_project -location $project_dir -name $project_name -project_description {} -block_mode 0 -standalone_peripheral_initialization 0 -instantiate_in_smartdesign 1 -ondemand_build_dh 1 -hdl {VERILOG} -family {PolarFire} -die {MPF300TS} -package {FCG484} -speed {STD} -die_voltage {1.0} -part_range {IND} -adv_options {IO_DEFT_STD:LVCMOS 1.8V} -adv_options {RESTRICTPROBEPINS:1} -adv_options {RESTRICTSPIPINS:0} -adv_options {SYSTEM_CONTROLLER_SUSPEND_MODE:0} -adv_options {TEMPR:IND} -adv_options {VCCI_1.2_VOLTR:IND} -adv_options {VCCI_1.5_VOLTR:IND} -adv_options {VCCI_1.8_VOLTR:IND} -adv_options {VCCI_2.5_VOLTR:IND} -adv_options {VCCI_3.3_VOLTR:IND} -adv_options {VOLTR:IND}
-			no_third_argument_entered
 		}
 		download_required_direct_cores
 		source ./import/components/IMAF_CFG1/import_sd_and_constraints_imaf_cfg1.tcl
