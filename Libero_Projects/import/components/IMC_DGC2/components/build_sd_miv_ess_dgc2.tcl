@@ -1,3 +1,7 @@
+#MIV Cores    : MIV_RV32, MIV_ESS
+#
+#Libero's TCL top level script
+
 set sd_name {BaseDesign}
 create_smartdesign -sd_name ${sd_name}
 
