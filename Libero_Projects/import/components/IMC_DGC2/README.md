@@ -1,8 +1,8 @@
 ## Mi-V Extended Subsystem Design Guide Configuration 2: I2C Write & Boot
-This folder contains Tcl scripts that build Libero SoC v2021.3 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
-> Design is catered for Libero SoC v2021.3. Using older versions of Libero SoC will result in errors.
+This folder contains Tcl scripts that build Libero SoC v2022.1 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
+> Design is catered for Libero SoC v2022.1. Using older versions of Libero SoC will result in errors.
 
-#### PF_Avalanche_MIV_RV32_BaseDesign (no PolarFire Engineering Sample silicon project for DGC2)
+#### PF_Avalanche_MIV_RV32_BaseDesign
 
 | Config  | Description |
 | :------:|:----------------------------------------|
@@ -20,11 +20,11 @@ This folder contains Tcl scripts that build Libero SoC v2021.3 MIV_ESS DGC2 desi
     2. Execute the selected script, Project -> Execute Script
     3. Select the directory that the script is located in, using the "..."
     4. Select the script and select "Open"
-    5. In the arguments text box, enter "DGC2 SYNTHESIZE"
+    5. In the arguments text box, enter "DGC2 SYNTHESIZE PS"
     6. Select the "Run" button to execute the script
     7. Once complete, a script report will be generated.
 
-In this example, the arguments "DGC2 SYNTHESIZE" are entered to take the project through to Synthesis.
+In this example, the arguments "DGC2 SYNTHESIZE PS" are entered to take the 'PS' die project through to Synthesis.
 
 Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
 
@@ -43,6 +43,14 @@ The complete set of script arguments are documented here.
 | PLACE_AND_ROUTE           | Run place and route on the design  |
 | GENERATE_BITSTREAM        | Generate the bitstream for the design|
 | EXPORT_PROGRAMMING_FILE   | Export the programming file (.job) |
+| PS | Build a base design targeted for 'PS' die |
+| ES | Build a base design targeted for 'ES' die |
+
+#### Third argument:
+| Argument                  |  Description   |
+| ------------------------- |:---------------|
+| PS | Build a base design targeted for 'PS' die |
+| ES | Build a base design targeted for 'ES' die |
 
 
 ## <a name="Software Provided"></a> Software Provided
