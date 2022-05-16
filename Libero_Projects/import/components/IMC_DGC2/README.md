@@ -24,9 +24,9 @@ This folder contains Tcl scripts that build Libero SoC v2022.1 MIV_ESS DGC2 desi
     6. Select the "Run" button to execute the script
     7. Once complete, a script report will be generated.
 
-In this example, the arguments "DGC2 SYNTHESIZE PS" are entered to take the 'PS' die project through to Synthesis.
+In this example, the arguments "DGC2 SYNTHESIZE PS" are entered to take the production silicon (PS) die project through to Synthesis.
 
-Libero executes the script and opens the Mi-V sample project. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, IO Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
+Libero executes the script and opens the Mi-V sample project targeted for a production silicon (PS) die. The script adds Timing constraints to the project for Synthesis, Place and Route, and Timing Verification. Additionally, I/O Constraints are added to the project for Place and Route. The project can now be taken through the remainder of the Libero SoC design flow.
 
 ## <a name="Script arguments"></a> Script Arguments
 The complete set of script arguments are documented here.
@@ -43,8 +43,7 @@ The complete set of script arguments are documented here.
 | PLACE_AND_ROUTE           | Run place and route on the design  |
 | GENERATE_BITSTREAM        | Generate the bitstream for the design|
 | EXPORT_PROGRAMMING_FILE   | Export the programming file (.job) |
-| PS | Build a base design targeted for 'PS' die |
-| ES | Build a base design targeted for 'ES' die |
+
 
 #### Third argument:
 | Argument                  |  Description   |
