@@ -1,6 +1,6 @@
 ## Future Avalanche Board FPGA Programming Files
 
-This folder contains FlashPro Express v2021.2 projects for the Future Avalanche Board Mi-V sample designs.
+This folder contains FlashPro Express v2022.1 projects for the Future Avalanche Board Mi-V sample designs.
 
 ## FlashPro Express
 The programming files contained under this folder were exported from the designs in the Libero_Projects folder in this repository. Select the desired programming file (.job) and program your device using FlashPro Express.
@@ -20,11 +20,17 @@ The programming files contained under this folder were exported from the designs
     8. Once complete the status bar will display "1 PROGRAMMER(S) PASSED"
 
 ## Design Features
+
+> MI-V Extended Subsystem Design Guide Configurations:
+> * For **DGC2: I2C Write & Boot** design features, refer to [DGC2 README](../Libero_Projects/import/components/IMC_DGC2/README.md)
+
+The following applies only to non MIV_ESS Design Guide: Design Guide Configurations (DGC2)
+
 The Libero designs include the following features:
 * A soft RISC-V processor.
 * A RISC-V debug block allowing on-target debug using SoftConsole
 * The operating frequency of the design is 50MHz
-* Target memory is SRAM (32kB)
+* Target memory is SRAM/TCM (32kB)
 * User peripherals: 2 Timers, UART, 2 GPIO Inputs and 4 GPIO Outputs (GPIOs use fixed configs for simplicity and better resource utilization)
 
 The peripherals in this design are located at the following addresses.
