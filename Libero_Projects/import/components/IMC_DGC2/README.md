@@ -1,6 +1,6 @@
 ## Mi-V Extended Subsystem Design Guide Configuration 2: I2C Write & Boot
-This folder contains Tcl scripts that build Libero SoC v2022.1 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
-> Design is catered for Libero SoC v2022.1. Using older versions of Libero SoC will result in errors.
+This folder contains Tcl scripts that build Libero SoC v2022.2 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
+> Design is catered for Libero SoC v2022.2. Using older versions of Libero SoC will result in errors.
 
 #### PF_Avalanche_MIV_RV32_BaseDesign
 
@@ -55,15 +55,15 @@ The complete set of script arguments are documented here.
 ## <a name="Software Provided"></a> Software Provided
 There are two programs included with this configuration:
 * **miv-rv32i-systick-blinky.hex**: A Hex program configured to run from TCM's address (0x4000_0000). The program is initialized in the LSRAM component at 0x8000_0000 and it is accessible over the AHB interface.
-    > The example hex program was created using  miv-rv32i-systick-blinky in release mode (miv32i-Release). For more information about the project go to bare metal example: [miv-rv32i-systick-blinky](https://github.com/Mi-V-Soft-RISC-V/miv-rv32-bare-metal-examples/tree/main/applications/miv-rv32-hal/miv-rv32i-systick-blinky)
+    > The example hex program was created using  miv-rv32i-systick-blinky in release mode (miv32i-Release). For more information about the project go to bare metal example: [miv-rv32i-systick-blinky](https://mi-v-ecosystem.github.io/redirects/miv-soft/miv-rv32i-systick-blinky.md)
 
 * **miv-rv32-ess-bootloader.elf**: The supplied Bootloader .elf file is used to copy data from the LSRAM (SRC_MEM) @0x8000_0000 to external I2C Flash memory (Dual EE Click board required)
-    > The .elf program was compiled using 'miv-rv32-ess-bootloader' in Bootstrap mode. For more information about the project go to bare metal example: [miv-rv32-ess-bootloader](https://github.com/Mi-V-Soft-RISC-V/miv-rv32-bare-metal-examples/tree/main/applications/bootloaders/miv-rv32-bootloader)
+    > The .elf program was compiled using 'miv-rv32-ess-bootloader' in Bootstrap mode. For more information about the project go to bare metal example: [miv-rv32-ess-bootloader](https://mi-v-ecosystem.github.io/redirects/miv-soft/miv-rv32-bootloader.md)
 
 #### Running a Bootloader .elf program for DGC2
 The provided program, *miv-rv32-ess-bootloader.elf* , is available in the Libero project folder after the *create_project* .tcl script has been run for the Design Configuration 2 (DGC2). The program can be used to transfer a program stored in LSRAM to an external I2C EEPROM. The MIV_ESS can then copy the code to the MIV_RV32 Tightly Coupled Memory (TCM), then the MIV_RV32 can boot the copied code.
 
-The sources are available from the [Mi-V Soft processor Bare Metal examples](https://github.com/Mi-V-Soft-RISC-V/miv-rv32-bare-metal-examples).
+The sources are available from the [Mi-V Soft processor Bare Metal examples](https://mi-v-ecosystem.github.io/redirects/miv-soft/miv-rv32-bare-metal-examples.md).
 To run the Bootloader .elf program, follow the steps below or refer to the *MIV_ESS v2.0 Design Guide* (accessible from the Libero catalog) for more detailed instructions:
 > A DGC2 Libero design directory is required to have been created to access the .elf file. The hardware needs to be programmed with DGC2 bitstream.
 
@@ -82,11 +82,10 @@ To run the Bootloader .elf program, follow the steps below or refer to the *MIV_
 
 ### Features
 The Libero designs include the following features:
-* A soft RISC-V processor.
+* A soft RISC-V processor operating at 50 MHz
 * A RISC-V debug block allowing on-target debug using SoftConsole
-* An Extended subsystem with peripheral cores
-* The operating frequency of the design is 50MHz
-* Target memory is SRAM/TCM (32kB)
+* An Extended Subsystem with integrated peripherals
+* Target SRAM/TCM memory (32kB)
 * User peripherals: MIV_ESS (Bootstrap, I2C, GPIO, UART)
 
 ### Boot Sequence Operation
@@ -107,11 +106,11 @@ A more detailed description of the boot sequence can be found in this section.
 | Peripheral                       | Address Start | Address End    |
 | ------------------------------:  |:-------------:|:--------------:|
 | PLIC                             | 0x7000_0000   | 0x70FF_FFFF    |
-| CoreUARTapb                      | 0x7100_0000   | 0x71FF_FFFF    |
+| UART                             | 0x7100_0000   | 0x71FF_FFFF    |
 | Timer                            | 0x7200_0000   | 0x72FF_FFFF    |
 | CoreTimer_0 / MIV_ESS_APBSLOT3   | 0x7300_0000   | 0x73FF_FFFF    |
 | CoreTimer_1 / MIV_ESS_APBSLOT4   | 0x7400_0000   | 0x74FF_FFFF    |
-| CoreGPIO_OUT                     | 0x7500_0000   | 0x75FF_FFFF    |
+| GPIO                             | 0x7500_0000   | 0x75FF_FFFF    |
 | SPI                              | 0x7600_0000   | 0x76FF_FFFF    |
 | uDMA                             | 0x7800_0000   | 0x78FF_FFFF    |
 | WDOG                             | 0x7900_0000   | 0x79FF_FFFF    |
