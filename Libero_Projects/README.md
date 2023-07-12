@@ -9,12 +9,12 @@ This folder contains Tcl scripts that build Libero SoC v2023.1 design projects f
 
 2) There is also an issue which effects all MIV_RV32 cores, when using fast interrupts where the return address can become corrupted. There software workaround can be applied in the entry.S in MIV_RV32 HAL file as shown below untill the issue is fixed in the IP.
 
-.macro STORE_CONTEXT
-addi sp, sp, -SP_SHIFT_OFFSET*REGBYTES
-SREG x1, 0 * REGBYTES(sp)
-SREG x1, 0 * REGBYTES(sp) // re-write the return address to workaround
-SREG x2, 1 * REGBYTES(sp)
-SREG x3, 2 * REGBYTES(sp)
+.macro STORE_CONTEXT  
+addi sp, sp, -SP_SHIFT_OFFSET*REGBYTES  
+SREG x1, 0 * REGBYTES(sp)  
+SREG x1, 0 * REGBYTES(sp) // re-write the return address to workaround  
+SREG x2, 1 * REGBYTES(sp)  
+SREG x3, 2 * REGBYTES(sp)  
 
 Please see the latest MIV_RV32 HAL available [here](https://github.com/Mi-V-Soft-RISC-V/platform/tree/main/miv_rv32_hal).
 
