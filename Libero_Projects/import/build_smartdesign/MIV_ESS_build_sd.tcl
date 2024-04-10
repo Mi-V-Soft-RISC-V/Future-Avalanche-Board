@@ -45,7 +45,6 @@ sd_create_scalar_port -sd_name ${sdName} -port_name {SCL} -port_direction {INOUT
 sd_create_scalar_port -sd_name ${sdName} -port_name {SDA} -port_direction {INOUT} -port_is_pad {1}
 
 # Create top level Bus Ports
-sd_create_bus_port -sd_name ${sdName} -port_name {GPIO_IN} -port_direction {IN} -port_range {[1:0]}
 sd_create_bus_port -sd_name ${sdName} -port_name {GPIO_OUT} -port_direction {OUT} -port_range {[3:0]}
 
 
@@ -67,9 +66,8 @@ sd_connect_pins_to_constant -sd_name ${sdName} -pin_names "${softCpu}_${config}_
 
 # Add MIV_ESS_DGC(n)_C0 instance
 sd_instantiate_component -sd_name ${sdName} -component_name "MIV_ESS_${config}_C0" -instance_name "MIV_ESS_${config}_C0_0"
-sd_create_pin_slices -sd_name ${sdName} -pin_name "MIV_ESS_${config}_C0_0:GPIO_IN" -pin_slices {[1:0]}
-sd_create_pin_slices -sd_name ${sdName} -pin_name "MIV_ESS_${config}_C0_0:GPIO_IN" -pin_slices {[3:2]}
-sd_connect_pins_to_constant -sd_name ${sdName} -pin_names "MIV_ESS_${config}_C0_0:GPIO_IN\[3:2\]" -value {GND}
+sd_connect_pins_to_constant -sd_name ${sdName} -pin_names "MIV_ESS_${config}_C0_0:GPIO_IN" -value {GND}
+sd_mark_pins_unused -sd_name ${sdName} -pin_names "MIV_ESS_${config}_C0_0:GPIO_INT"
 sd_invert_pins -sd_name ${sdName} -pin_names "MIV_ESS_${config}_C0_0:SYS_RESET_REQ"
 
 
@@ -151,7 +149,6 @@ sd_connect_pins -sd_name ${sdName} -pin_names "PF_CCC_C0_0:OUT0_FABCLK_0 ${sramM
 sd_connect_pins -sd_name ${sdName} -pin_names "CORERESET_PF_C0_0:FABRIC_RESET_N ${sramMemComp}_C0_0:HRESETN"
 
 sd_connect_pins -sd_name ${sdName} -pin_names {"USER_RST" "CORERESET_PF_C0_0:EXT_RST_N"}
-sd_connect_pins -sd_name ${sdName} -pin_names "CORERESET_PF_C0_0:FABRIC_RESET_N ${softCpu}_${config}_C0_0:RESETN"
 sd_connect_pins -sd_name ${sdName} -pin_names "CORERESET_PF_C0_0:FABRIC_RESET_N MIV_ESS_${config}_C0_0:PRESETN"
 sd_connect_pins -sd_name ${sdName} -pin_names "COREJTAGDEBUG_C0_0:TGT_TCK_0 ${softCpu}_${config}_C0_0:JTAG_TCK"
 sd_connect_pins -sd_name ${sdName} -pin_names "COREJTAGDEBUG_C0_0:TGT_TDI_0 ${softCpu}_${config}_C0_0:JTAG_TDI"
@@ -170,7 +167,6 @@ sd_connect_pins -sd_name ${sdName} -pin_names "COREJTAGDEBUG_C0_0:TMS TMS"
 sd_connect_pins -sd_name ${sdName} -pin_names "COREJTAGDEBUG_C0_0:TRSTB TRSTB"
 
 # Add bus net connections
-sd_connect_pins -sd_name ${sdName} -pin_names "GPIO_IN MIV_ESS_${config}_C0_0:GPIO_IN\[1:0\]" 
 sd_connect_pins -sd_name ${sdName} -pin_names "GPIO_OUT MIV_ESS_${config}_C0_0:GPIO_OUT" 
 
 # Add bus interface netconnections
