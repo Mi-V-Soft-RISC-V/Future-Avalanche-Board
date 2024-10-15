@@ -1,6 +1,6 @@
 ## Mi-V Extended Subsystem Design Guide Configuration 2: I2C Write & Boot
-This folder contains Tcl scripts that build Libero SoC v2024.1 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
-> Design is catered for Libero SoC v2024.1. Using older versions of Libero SoC will result in errors.
+This folder contains Tcl scripts that build Libero SoC v2024.2 MIV_ESS DGC2 design project for the Future Avalanche Board. The script is executed in Libero SoC to generate the sample design. 
+> Design is catered for Libero SoC v2024.2. Using older versions of Libero SoC will result in errors.
 
 #### PF_Avalanche_MIV_RV32_BaseDesign
 
