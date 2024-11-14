@@ -1,22 +1,6 @@
 ## Future Avalanche Board FPGA Programming Files
 
 This folder contains FlashPro Express v2024.2 projects for the Future Avalanche Board Mi-V sample designs.
-
-## Notice
-1) Due to an issues found in the MIV_RV32 v3.1.100 with the MTVECs address, it is not recommended to use MIV_RV32 v3.1.100 for any FreeRTOS examples. You may continue to use MIV_RV32 v3.0.100 with FreeRTOS examples. 
-
-2) There is also an issue which effects all MIV_RV32 cores, when using fast interrupts where the return address can become corrupted. There software workaround can be applied in the entry.S in MIV_RV32 HAL file as shown below untill the issue is fixed in the IP.
-
-.macro STORE_CONTEXT  
-addi sp, sp, -SP_SHIFT_OFFSET*REGBYTES  
-SREG x1, 0 * REGBYTES(sp)  
-SREG x1, 0 * REGBYTES(sp) // re-write the return address to workaround  
-SREG x2, 1 * REGBYTES(sp)  
-SREG x3, 2 * REGBYTES(sp)  
-
-Please see the latest MIV_RV32 HAL available [here](https://github.com/Mi-V-Soft-RISC-V/platform/tree/main/miv_rv32_hal).
-
-A new version of the MIV_RV32 will be released to fix both the issues mentioned above.
   
 ## FlashPro Express
 The programming files contained under this folder were exported from the designs in the Libero_Projects folder in this repository. Select the desired programming file (.job) and program your device using FlashPro Express.
@@ -70,5 +54,3 @@ The peripherals in this design are located at the following addresses.
 | MIV_ESS_APBSLOTE_BASE            | 0x7E00_0000   | 0x7EFF_FFFF    |
 | MIV_ESS_APBSLOTF_BASE            | 0x7F00_0000   | 0x7FFF_FFFF    |
 | SRAM/TCM                         | 0x8000_0000   | 0x8000_7FFF    |
-
-
