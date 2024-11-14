@@ -1,5 +1,5 @@
 ## Future Avalanche Board Mi-V Sample FPGA Designs
-This folder contains Tcl scripts that build Libero SoC v2024.1 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All Configuration (CFG) design cores boot from memory at 0x8000_0000.
+This folder contains Tcl scripts that build Libero SoC v2024.2 design projects for the Future Avalanche Board. These scripts are executed in Libero SoC to generate the sample designs. All Configuration (CFG) design cores boot from memory at 0x8000_0000.
 
 > MI-V Extended Subsystem Design Guide Configurations:
 > * For **Design Guide Configuration - DGC2: I2C Write & Boot** refer to this [DGC2 README](../docs/design_dgc2/README.md)
@@ -12,21 +12,6 @@ This folder contains Tcl scripts that build Libero SoC v2024.1 design projects f
 | CFG2    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: IM</li><li>Multiplier: Fabric</li><li>Interfaces: AXI4 Master (mirrored), APB3 Initiator</li><li>Internal IRQs: 1</li><li>TCM: Disabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: Enabled</li><li>An example program is stored in the LSRAM to boot out the box</ul>|
 | CFG3    | This design uses the MIV_RV32 core configured as follows: <ul><li>RISC-V Extensions: I</li><li>Multiplier: none</li><li>Interfaces: APB3 Initiator</li><li>Internal IRQs: 1</li><li>TCM: enabled</li><li>System Timer: Internal MTIME enabled, Internal MTIME IRQ enabled</li><li>Debug: Enabled</li></ul>|
     
-
-#### PF_Avalanche_MIV_RV32IMA_BaseDesign
-
-| Config  | Description |
-| :------:|:------------|
-| CFG1    | This design uses the MIV_RV32IMA_L1_AHB core with an **AHB** interface for memory and peripherals|
-| CFG2    | This design uses the MIV_RV32IMA_L1_AXI core with an **AXI3** interface for memory and peripherals|
-
-
-#### PF_Avalanche_MIV_RV32IMAF_BaseDesign
-
-| Config  |Description |
-| :------:|:-----------|
-| CFG1    | This design uses the MIV_RV32IMAF_L1_AHB core with an **AHB** interface for memory and peripherals|
-
 
 ## <a name="quick"></a> Instructions
 
@@ -111,13 +96,3 @@ The peripherals in this design are located at the following addresses.
 | MIV_ESS_APBSLOTF_BASE            | 0x7F00_0000   | 0x7FFF_FFFF    |
 | SRAM/TCM                         | 0x8000_0000   | 0x8000_7FFF    |
 
-
-#### Legacy core based configurations:
-| Peripheral (Standalone)| Address       |
-| ----------------------:|:-------------:|
-| CoreUARTapb            | 0x7000_1000   |
-| CoreGPIO_IN            | 0x7000_2000   |
-| CoreTimer_0            | 0x7000_3000   |
-| CoreTimer_1            | 0x7000_4000   |
-| CoreGPIO_OUT           | 0x7000_5000   |
-| SRAM                   | 0x8000_0000   |
